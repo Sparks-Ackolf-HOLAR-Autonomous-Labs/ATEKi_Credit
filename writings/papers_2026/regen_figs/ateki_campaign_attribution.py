@@ -8,7 +8,11 @@ ateki/results/campaign_attribution/k4_50seed/07_campaign_attribution.json.
           players (cold_data, donor_prior, adaptive_trust,
           kway_events); grouped bars, value labels. Shows the veto
           player and the prior's decay (+0.0792 -> +0.0228) against
-          the persistent k-way share (~+0.028).
+          the persistent k-way share (+0.028). Whiskers: 90% bootstrap
+          interval of the 56-cell mean over the 50 matched seeds
+          (windows.*.mean_shapley_ci90_over_seeds, added by a re-run of
+          experiments/07_campaign_attribution.py that reproduced every
+          stored value).
   Centre: histogram of windows.early.per_cell[cell].shapley.
           donor_prior.mean over the 56 donor->receiver cells;
           negative cells coloured red (87.5% positive).
@@ -51,10 +55,10 @@ FACTORS = [
 SHORT = {
     "mp_gga": "MP GGA",
     "mp_gga_expsynth": "MP GGA (ICSD)",
-    "jarvis_mbj": "TB-mBJ",
+    "jarvis_mbj": "JARVIS TB-mBJ",
     "snumat_gga": "SNUMAT GGA",
     "snumat_hse": "SNUMAT HSE06",
-    "expt_zhuo": "Expt. (Zhuo)",
+    "expt_zhuo": "measured gaps",
 }
 
 
@@ -66,9 +70,12 @@ def main():
 
     fig, (ax1, ax2, ax3) = plt.subplots(
         1, 3, figsize=(TMLR_FULL, 2.9),
-        gridspec_kw={"width_ratios": [1.2, 1.0, 1.0]})
+        gridspec_kw={"width_ratios": [1.4, 0.95, 1.0]})
 
-    # Left: per-factor mean Shapley, early vs final
+    # Left: per-factor mean Shapley, early vs final, with the 90% interval
+    # of the 56-cell mean over the 50 matched seeds (bootstrap over seeds).
+    ci = {"early": d["windows"]["early"]["mean_shapley_ci90_over_seeds"],
+          "final": d["windows"]["final"]["mean_shapley_ci90_over_seeds"]}
     xs = np.arange(len(FACTORS))
     w = 0.38
     for off, window, alpha, tag in ((-w / 2, early, 1.0, "early"),
@@ -77,16 +84,19 @@ def main():
         cols = [c for _, _, c in FACTORS]
         ax1.bar(xs + off, vals, width=w, color=cols, alpha=alpha,
                 edgecolor="none")
+        for x, (k, _, _) in zip(xs + off, FACTORS):
+            lo, hi = ci[tag][k]
+            ax1.plot([x, x], [lo, hi], color=INK, lw=0.8)
         for x, v in zip(xs + off, vals):
             if abs(v) >= 0.05:
-                ax1.annotate(f"{v:+.2f}", xy=(x, v), xytext=(0, 2),
+                ax1.annotate(f"{v:+.2f}", xy=(x, v), xytext=(0, 3),
                              textcoords="offset points", ha="center",
                              va="bottom", fontsize=7, color=INK)
     ax1.set_xticks(xs)
     ax1.set_xticklabels([lab for _, lab, _ in FACTORS], fontsize=7)
     ax1.axhline(0, color=INK, linewidth=0.8)
     ax1.set_ylabel("mean Shapley value (Kendall $\\tau$)")
-    ax1.set_title("(a) per-factor credit,\n56 cells", loc="left")
+    ax1.set_title("(a) Credit per factor,\n56 cells x 50 seeds", loc="left")
     ax1.set_ylim(-0.12, 0.88)
     ax1.grid(axis="x", visible=False)
     handles = [plt.Rectangle((0, 0), 1, 1, color=GREY, alpha=a)
@@ -104,9 +114,9 @@ def main():
     cols = [ACCENT_RED if c < 0 else SNUMAT_PURPLE for c in centres]
     ax2.bar(centres, counts, width=0.019, color=cols)
     ax2.axvline(0, color=INK, linewidth=0.8)
-    ax2.set_xlabel("donor-prior Shapley value")
-    ax2.set_ylabel("number of cells")
-    ax2.set_title("(b) donor prior,\nearly window", loc="left")
+    ax2.set_xlabel("donor-ordering Shapley value")
+    ax2.set_ylabel("number of donor-receiver cells")
+    ax2.set_title("(b) Donor ordering,\nearly window", loc="left")
     ax2.grid(axis="x", visible=False)
     ax2.set_ylim(0, 8.4)
     ax2.annotate("87.5% of cells\npositive", xy=(0.97, 0.97),
@@ -118,23 +128,26 @@ def main():
     ys = np.arange(len(cells))[::-1]
     hw = 0.36
     for off, key, col, lab in ((hw / 2, "prior_shapley", ACCENT_RED,
-                                "donor prior"),
+                                "donor ordering"),
                                (-hw / 2, "trust_shapley", EXPT_GOLD,
-                                "adaptive trust")):
+                                "learned trust")):
         ax3.barh(ys + off, [c[key] for c in cells], height=hw,
                  color=col, label=lab)
+    # 95% bootstrap interval over the 50 seeds (stored per cell)
+    for y, c in zip(ys, cells):
+        ax3.plot(c["prior_ci"], [y + hw / 2] * 2, color=INK, lw=0.8)
     labels = []
     for c in cells:
         don, rec = c["cell"].split("->")
         labels.append(f"{SHORT[don]} $\\to$\n{SHORT[rec]}")
     ax3.set_yticks(ys)
-    ax3.set_yticklabels(labels, fontsize=6.5)
+    ax3.set_yticklabels(labels, fontsize=7)
     ax3.axvline(0, color=INK, linewidth=0.8)
     ax3.set_xlabel("Shapley value")
-    ax3.set_title("(c) trust as a\nsafeguard", loc="left")
+    ax3.set_title("(c) Trust as a\nsafeguard", loc="left")
     ax3.grid(axis="y", visible=False)
     ax3.set_ylim(-2.0, len(cells) - 0.5)
-    ax3.legend(loc="lower left", ncol=1, fontsize=6.5, handlelength=1.0,
+    ax3.legend(loc="lower left", ncol=1, fontsize=7, handlelength=1.0,
                frameon=True, facecolor="white", edgecolor="none",
                framealpha=1.0)
     save(fig, OUT)

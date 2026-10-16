@@ -23,14 +23,14 @@ Figures: run a script from the folder root, for example `python writings/papers_
 
 | Figure | Script | Files read |
 |---|---|---|
-| `06_physics_prior_attribution.png` | `writings/papers_2026/regen_figs/ateki_physics_prior.py` | `ateki/results/physics_attribution/06_physics_prior_attribution.json` |
+| `06_physics_prior_attribution.png` | `writings/papers_2026/regen_figs/ateki_physics_prior.py` | `ateki/results/physics_attribution/06_physics_prior_attribution.json`, `ateki/results/physics_attribution/06_physics_prior_attribution_per_run.json` |
 | `07_campaign_attribution.png` | `writings/papers_2026/regen_figs/ateki_campaign_attribution.py` | `ateki/results/campaign_attribution/k4_50seed/07_campaign_attribution.json` |
 | `worked_example_ateki.png` | `writings/papers_2026/regen_figs/worked_example_ateki.py` | `ateki/results/database_attribution/coalitions/expt_zhuo/0.json`, `ateki/results/database_attribution/coalitions/expt_zhuo/1.json`, `ateki/results/database_attribution/coalitions/expt_zhuo/10.json`, `ateki/results/database_attribution/coalitions/expt_zhuo/100.json` and 125 more |
 | `database_attribution.png` | `writings/papers_2026/regen_figs/ateki_database_attribution.py` | `ateki/results/database_attribution/expt_zhuo/database_attribution.json` |
 | `recorded_meetings.pdf` | `writings/papers_2026/regen_figs/ateki_recorded_meetings.py` | `ateki/results/recorded_meetings/campaigns/flat_s0.json`, `ateki/results/recorded_meetings/campaigns/flat_s1.json`, `ateki/results/recorded_meetings/campaigns/flat_s2.json`, `ateki/results/recorded_meetings/campaigns/flat_s3.json` and 8 more |
-| `live_attribution.png` | `writings/papers_2026/regen_figs/live_almgsi_figs.py` | `compute/almgsi_campaign/results/analysis/source_agreement.json`, `compute/almgsi_campaign/results/campaigns/qe_hse06_all/summary.json`, `compute/almgsi_campaign/results/campaigns/qe_pbe_all/summary.json`, `compute/almgsi_campaign/results_T/analysis/temperature_study.json` |
-| `harsanyi_dividends.png` | `ateki/experiments/09_harsanyi_dividends.py` | `ateki/results/database_attribution/coalitions/expt_zhuo/0.json`, `ateki/results/database_attribution/coalitions/expt_zhuo/1.json`, `ateki/results/database_attribution/coalitions/expt_zhuo/10.json`, `ateki/results/database_attribution/coalitions/expt_zhuo/100.json` and 125 more |
-| `compute_credit.png` | `writings/papers_2026/regen_figs/ateki_compute_credit.py` | `compute/almgsi_campaign/results/campaigns/qe_hse06_shapley_coalitions/coalitions.json`, `compute/almgsi_campaign/results/campaigns/qe_hse06_shapley_combined/coalitions.json`, `compute/almgsi_campaign/results/campaigns/qe_pbe_shapley_coalitions/coalitions.json`, `compute/semiconductor_campaign/results/campaigns/qe_hse06_nohalide/summary.json` and 1 more |
+| `live_attribution.png` | `writings/papers_2026/regen_figs/live_almgsi_figs.py` | `compute/almgsi_campaign/candidates_index.json`, `compute/almgsi_campaign/results/analysis/source_agreement.json`, `compute/almgsi_campaign/results/campaigns/qe_hse06_all/summary.json`, `compute/almgsi_campaign/results/campaigns/qe_pbe_all/summary.json` and 11 more |
+| `harsanyi_dividends.png` | `writings/papers_2026/regen_figs/ateki_harsanyi_dividends.py` | `ateki/results/harsanyi_dividends/expt_zhuo/harsanyi_dividends.json` |
+| `compute_credit.png` | `writings/papers_2026/regen_figs/ateki_compute_credit.py` | `compute/almgsi_campaign/results/campaigns/qe_hse06_shapley_coalitions/coalitions.json`, `compute/almgsi_campaign/results/campaigns/qe_hse06_shapley_combined/coalitions.json`, `compute/almgsi_campaign/results/campaigns/qe_pbe_shapley_coalitions/coalitions.json`, `compute/semiconductor_campaign/results/campaigns/qe_hse06_nohalide/coalitions.json` and 3 more |
 | `emergent_swarm.pdf` | `writings/papers_2026/regen_figs/ateki_emergent_swarm.py` | `ateki/results/emergent_swarm/shapley.json`, `ateki/results/emergent_swarm/team_values.json` |
 | `emergent_swarm_dynamics.pdf` | `writings/papers_2026/regen_figs/ateki_emergent_swarm.py` | `ateki/results/emergent_swarm/shapley.json`, `ateki/results/emergent_swarm/team_values.json` |
 | `shared_member_credit.pdf` | `writings/papers_2026/regen_figs/ateki_unequal_credit.py` | `ateki/results/unequal_credit/part_a.json`, `ateki/results/unequal_credit/part_b.json` |
@@ -72,6 +72,7 @@ The result files above were written by these scripts (local modules they import 
 - `compute/semiconductor_campaign/archive_donors.py`
 - `compute/semiconductor_campaign/campaign_gap.py`
 - `compute/semiconductor_campaign/summarise.py`
+- `compute/semiconductor_campaign/shapley_per_run.py`
 - `ateki/experiments/14_emergent_swarm.py`
 - `ateki/experiments/15_replicated_bodies.py`
 - `ateki/experiments/16_multiple_swarms.py`
@@ -98,11 +99,11 @@ Some results in the paper come from campaign protocols and analyses that also se
 
 ## Contents by role
 
-- code: 133 files
+- code: 135 files
 - environment: 6 files
-- figure data: 353 files
-- input data: 7271 files
-- result named in paper: 28 files
+- figure data: 5432 files
+- input data: 2199 files
+- result named in paper: 24 files
 - code (carried over): 4 files
 - input data (carried over): 6 files
 

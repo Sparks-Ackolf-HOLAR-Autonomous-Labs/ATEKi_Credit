@@ -6,7 +6,8 @@ ateki/results/morphing_swarms/{team_values.json, games.json}
 (ateki/experiments/17_morphing_swarms.py). Results kept within each group
 (isolated); the batch is divided between groups by record.
   (a) number of independent groups against receiver compute (PBE), mean and
-      5-95 percentile band over 100 campaigns, for three cases;
+      5-95 percentile band over 100 campaigns (thin dotted outlines), for
+      three cases;
   (b) value minus the fixed structure with the same start, per start and rule
       set, PBE, mean and 90% bootstrap interval over 100 matched campaigns;
   (c) credit moved by membership for the 2 + 2 + 3 start (PBE): Owen value of
@@ -49,22 +50,27 @@ gs = fig.add_gridspec(2, 2, height_ratios=[1.0, 1.0], width_ratios=[1.0, 1.15])
 ax_a, ax_b, ax_c = fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1]), fig.add_subplot(gs[1, :])
 
 # (a) number of independent groups over the campaign
-CASES = [("split_1x7|merge_only|isolated", "seven single bodies, combine only", "#2E5FA3", "-"),
-         ("split_1x7|full_learned|isolated", "seven single bodies, learned rules", "#C4452C", "-"),
-         ("one_7|full_learned|isolated", "one swarm of seven, learned rules", "#009E73", "--")]
+CASES = [("split_1x7|merge_only|isolated", "7 singles, combine only", "#2E5FA3", "-"),
+         ("split_1x7|full_learned|isolated", "7 singles, learned rules", "#C4452C", "-"),
+         ("one_7|full_learned|isolated", "one swarm of 7, learned rules", "#009E73", "--")]
 for key, lab, col, ls in CASES:
     e = team[R][key]
     x = np.array(e["grid"])
     m = np.array(e["n_groups"]["mean"])
-    ax_a.fill_between(x, e["n_groups"]["p05"], e["n_groups"]["p95"], color=col, alpha=0.10, lw=0, step="post")
+    # 5-95 percentile band drawn as thin outlines so the three bands stay legible
+    for q in ("p05", "p95"):
+        ax_a.step(x, e["n_groups"][q], where="post", color=col, ls=":", lw=0.6, alpha=0.8)
     ax_a.step(x, m, where="post", color=col, ls=ls, lw=1.2, label=lab)
+ax_a.plot([], [], color="#555555", ls=":", lw=0.6, label="5-95% of campaigns")
 ax_a.axvline(0.25, color="#999999", lw=0.6, ls=":")
 ax_a.set_xlim(0, 0.6)
-ax_a.set_ylim(0.5, 7.5)
+ax_a.set_ylim(0.5, 11.2)
+ax_a.set_yticks(range(1, 8))
 ax_a.set_xlabel("Fraction of receiver compute spent")
 ax_a.set_ylabel("Independent groups")
-ax_a.set_title("(a) Groups during the campaign", loc="left")
-ax_a.legend(frameon=False, loc="upper right", fontsize=6.5)
+ax_a.set_title("(a) Groups during the campaign, n = 100", loc="left")
+ax_a.legend(frameon=False, loc="upper right", ncol=1, fontsize=7,
+            handlelength=1.6, borderaxespad=0.2, labelspacing=0.25)
 
 # (b) value against the fixed structure with the same start
 STARTS = [("split_1x7", "7 x 1"), ("split_2_2_3", "2+2+3"), ("split_4_3", "4+3"), ("split_2_5w", "2+5"),
@@ -85,8 +91,8 @@ ax_b.set_xticks(x)
 ax_b.set_xticklabels([s[1] for s in STARTS])
 ax_b.set_xlabel("Starting structure")
 ax_b.set_ylabel("Value minus fixed structure")
-ax_b.set_title("(b) Changing minus fixed structure", loc="left")
-ax_b.legend(frameon=False, loc="upper right", fontsize=6.3, ncol=1, handletextpad=0.2)
+ax_b.set_title("(b) Changing minus fixed, n = 100", loc="left")
+ax_b.legend(frameon=False, loc="upper right", fontsize=7, ncol=1, handletextpad=0.2)
 ax_b.set_ylim(-0.052, 0.072)
 
 # (c) credit moved by membership, 2 + 2 + 3 start
@@ -109,9 +115,9 @@ ax_c.axhline(0, color="#333333", lw=0.6)
 ax_c.set_xticks(x)
 ax_c.set_xticklabels([LAB[a] for a in bodies], fontsize=7)
 ax_c.set_ylabel("Credit minus\nShapley value")
-ax_c.set_title("(c) Credit moved by group membership, 2+2+3 start", loc="left")
+ax_c.set_title("(c) Credit moved by group membership, 2+2+3 start, n = 40 campaigns", loc="left")
 ax_c.set_ylim(-0.05, 0.08)
-ax_c.legend(frameon=False, loc="upper right", fontsize=6.5, ncol=3, columnspacing=1.0)
+ax_c.legend(frameon=False, loc="upper center", fontsize=7, ncol=3, columnspacing=0.8, handletextpad=0.3)
 
 fig.tight_layout(h_pad=1.0)
 OUT.mkdir(parents=True, exist_ok=True)

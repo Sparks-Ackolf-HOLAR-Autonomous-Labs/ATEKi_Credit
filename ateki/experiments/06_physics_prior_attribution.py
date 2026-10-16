@@ -290,6 +290,11 @@ def main():
         "prior_only_value": v_prior,
         "physics_share_of_grand": share,
         "prior_evaluations_equivalent": eval_equiv,
+        # per (channel, seed) values, channel-major then seed, for intervals
+        "phi_per_run": {p: {str(b): phi[p][b] for b in args.budgets}
+                        for p in PLAYERS},
+        "grand_per_run": {str(b): grand[b] for b in args.budgets},
+        "channels": sorted(per_channel),
     }
     with open(out_dir / "06_physics_prior_attribution.json", "w",
               encoding="utf-8") as f:

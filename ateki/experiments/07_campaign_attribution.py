@@ -143,9 +143,13 @@ def run(args) -> dict:
         "negative_prior_cells": [],
     }
 
+    # Separate generator for the cell-mean interval, so the per-cell CIs
+    # above keep their original random stream.
+    rng_cm = np.random.default_rng(args.boot_seed + 1)
     for window in ("early", "final"):
         per_cell: dict = {}
         agg: dict = {p: [] for p in PLAYERS}
+        by_seed: dict = {p: {} for p in PLAYERS}  # seed -> list over cells
         for recv in receivers:
             for donor in donors_of(next(iter(data[recv].values()))):
                 cell_scores = {m: {p: [] for p in PLAYERS}
@@ -157,6 +161,9 @@ def run(args) -> dict:
                     for m in cell_scores:
                         for p in PLAYERS:
                             cell_scores[m][p].append(cell[m][p])
+                    for p in PLAYERS:
+                        by_seed[p].setdefault(seed, []).append(
+                            cell["shapley"][p])
                 entry = {"n_seeds": len(grands),
                          "v_grand_mean": float(np.mean(grands))}
                 for m in cell_scores:
@@ -168,9 +175,19 @@ def run(args) -> dict:
                 per_cell[donor + "->" + recv] = entry
                 for p in PLAYERS:
                     agg[p].append(entry["shapley"][p]["mean"])
+        # 90% interval of the cell mean: per seed, average over the cells
+        # that ran that seed; percentile bootstrap over seeds.
+        cm_ci = {}
+        for p in PLAYERS:
+            s = np.asarray([np.mean(v) for _, v in sorted(by_seed[p].items())])
+            idx = rng_cm.integers(0, len(s), size=(args.n_boot, len(s)))
+            bm = s[idx].mean(axis=1)
+            cm_ci[p] = [float(np.percentile(bm, 5)), float(np.percentile(bm, 95))]
         result["windows"][window] = {
             "per_cell": per_cell,
             "mean_shapley": {p: float(np.mean(agg[p])) for p in PLAYERS},
+            "mean_shapley_ci90_over_seeds": cm_ci,
+            "n_seed_ids": len(by_seed[PLAYERS[0]]),
             "frac_cells_prior_positive": float(np.mean(
                 [c["shapley"]["donor_prior"]["mean"] > 0
                  for c in per_cell.values()])),

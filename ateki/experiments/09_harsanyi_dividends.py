@@ -587,8 +587,8 @@ def write_plot(r: dict, path: Path) -> None:
     import matplotlib.pyplot as plt  # noqa: E402
 
     st.apply_style()
-    fig, axes = plt.subplots(1, 2, figsize=(st.TMLR_FULL, 2.55),
-                             gridspec_kw={"width_ratios": [1.0, 1.0]})
+    fig, axes = plt.subplots(1, 2, figsize=(st.TMLR_FULL, 2.9),
+                             gridspec_kw={"width_ratios": [0.9, 1.1]})
 
     ax = axes[0]
     orders = [o["order"] for o in r["mass_by_order"]]
@@ -612,8 +612,8 @@ def write_plot(r: dict, path: Path) -> None:
     ax.set_ylabel(r"dividend mass (Kendall $\tau$)")
     ax.set_title("(a) Harsanyi dividend mass by order", loc="left")
     lo_y, hi_y = ax.get_ylim()
-    ax.set_ylim(lo_y - 0.22 * (hi_y - lo_y), hi_y)
-    ax.legend(loc="lower left", ncol=3, fontsize=6, handlelength=1.0,
+    ax.set_ylim(lo_y - 0.32 * (hi_y - lo_y), hi_y)
+    ax.legend(loc="lower left", ncol=2, fontsize=7, handlelength=1.0,
               columnspacing=0.8, handletextpad=0.4, borderaxespad=0.2)
 
     ax = axes[1]
@@ -627,7 +627,12 @@ def write_plot(r: dict, path: Path) -> None:
         for b in range(n):
             if a > b:
                 M[a, b] = 100.0 * dall[str((1 << order[a]) | (1 << order[b]))]
-    lim = float(np.nanmax(np.abs(M)))
+    # Drop the empty first row and last column of the lower triangle.
+    M = M[1:, :-1]
+    # Symmetric colour range clipped at +-8 so the 20 moderate cells are
+    # readable; the one cell beyond the range (the SNUMAT GGA/HSE06 pair)
+    # keeps its printed value and is outlined.
+    lim = 8.0
     im = ax.imshow(M, cmap="RdBu", vmin=-lim, vmax=lim)
     ax.grid(False)
     # no spines or tick marks on the triangle, so cell labels at the
@@ -635,22 +640,25 @@ def write_plot(r: dict, path: Path) -> None:
     ax.tick_params(length=0)
     for sp in ax.spines.values():
         sp.set_visible(False)
-    for a in range(n):
-        for b in range(n):
-            if a > b:
+    for a in range(n - 1):
+        for b in range(n - 1):
+            if not np.isnan(M[a, b]):
                 ax.text(b, a, "%+.1f" % M[a, b], ha="center", va="center",
-                        fontsize=5.5,
+                        fontsize=7,
                         color="white" if abs(M[a, b]) > 0.6 * lim else st.INK)
+                if abs(M[a, b]) > lim:
+                    ax.add_patch(plt.Rectangle((b - 0.5, a - 0.5), 1, 1,
+                                               fill=False, ec=st.INK, lw=1.0))
     names = [st.SOURCE_NAMES.get(donors[j], donors[j]) for j in order]
     names = [nm.replace("MP GGA (ICSD-matched)", "MP GGA (ICSD)")
              for nm in names]
-    ax.set_xticks(range(n))
-    ax.set_yticks(range(n))
-    ax.set_xticklabels(names, rotation=40, ha="right", fontsize=6.5)
-    ax.set_yticklabels(names, fontsize=6.5)
-    ax.set_title(r"(b) pair dividends, $100\,d(\{i,j\})$", loc="left")
-    cb = fig.colorbar(im, ax=ax, shrink=0.9, pad=0.02)
-    cb.ax.tick_params(labelsize=6.5)
+    ax.set_xticks(range(n - 1))
+    ax.set_yticks(range(n - 1))
+    ax.set_xticklabels(names[:-1], rotation=40, ha="right", fontsize=7)
+    ax.set_yticklabels(names[1:], fontsize=7)
+    ax.set_title(r"(b) Pair dividends, $100\,d(\{i,j\})$", loc="left")
+    cb = fig.colorbar(im, ax=ax, shrink=0.9, pad=0.02, extend="both")
+    cb.ax.tick_params(labelsize=7)
     # cells hold 100 d({i,j}), i.e. dividends in units of 0.01 Kendall tau
     cb.set_label(r"pair dividend (10$^{-2}$ Kendall $\tau$)", fontsize=7)
     st.save(fig, path)

@@ -7,14 +7,16 @@ Data (all committed, no new campaigns):
       halogens, five donors, all 32 coalitions:
       compute/semiconductor_campaign/results/campaigns/qe_hse06_nohalide/summary.json
       (HSE06 compute charged) and qe_hse06_nohalide_combined/summary.json
-      (HSE06 plus the PBE relaxations charged). Only coalition means over
-      the 40 runs are stored for this game, so the bars carry no interval.
+      (HSE06 plus the PBE relaxations charged); per-run coalition values in
+      coalitions.json next to each summary (re-run of the Shapley block with
+      the same seeds, compute/semiconductor_campaign/shapley_per_run.py;
+      Shapley of the means equals summary.json).
   (b) Al-Mg-Si, PBE receiver, four donors, all 16 coalitions:
       compute/almgsi_campaign/results/campaigns/qe_pbe_shapley_coalitions/coalitions.json
   (c) Al-Mg-Si, HSE06 receiver, five donors, all 32 coalitions:
       qe_hse06_shapley_coalitions/coalitions.json (HSE06 compute) and
       qe_hse06_shapley_combined/coalitions.json (HSE06 plus PBE compute).
-  For (b) and (c) the per-run coalition values (40 runs: 20 seeds x
+  For (a), (b) and (c) the per-run coalition values (40 runs: 20 seeds x
   batches of one and four, MD values drawn from their sampling error) give
   one exact Shapley vector per run; bars are the means (equal to the
   published values) and whiskers the 90% percentile-bootstrap interval of
@@ -115,11 +117,16 @@ def main():
     # (a) band gaps
     s1 = json.loads((SEMI / "qe_hse06_nohalide" / "summary.json").read_text(encoding="utf-8"))["shapley"]
     s2 = json.loads((SEMI / "qe_hse06_nohalide_combined" / "summary.json").read_text(encoding="utf-8"))["shapley"]
-    don = sorted(s1["pooled_fixed"]["shapley"], key=lambda k: -s1["pooled_fixed"]["shapley"][k])
-    bars(axs[0], don, [(s1["pooled_fixed"]["shapley"], False, False),
-                       (s1["pooled_learned"]["shapley"], True, False),
-                       (s2["pooled_fixed"]["shapley"], False, True),
-                       (s2["pooled_learned"]["shapley"], True, True)],
+    gf, _ = per_run_ci(SEMI / "qe_hse06_nohalide" / "coalitions.json", "pooled_fixed")
+    gl, _ = per_run_ci(SEMI / "qe_hse06_nohalide" / "coalitions.json", "pooled_learned")
+    gcf, _ = per_run_ci(SEMI / "qe_hse06_nohalide_combined" / "coalitions.json", "pooled_fixed")
+    gcl, _ = per_run_ci(SEMI / "qe_hse06_nohalide_combined" / "coalitions.json", "pooled_learned")
+    for ref, got in ((s1["pooled_fixed"], gf), (s1["pooled_learned"], gl),
+                     (s2["pooled_fixed"], gcf), (s2["pooled_learned"], gcl)):
+        dev = max(abs(ref["shapley"][k] - got[k][0]) for k in got)
+        assert dev < 1e-9, f"per-run means differ from summary.json by {dev}"
+    don = sorted(gf, key=lambda k: -gf[k][0])
+    bars(axs[0], don, [(gf, False, False), (gl, True, False), (gcf, False, True), (gcl, True, True)],
          "(a) Band gaps, HSE06 receiver")
     axs[0].set_xlabel("Shapley credit\n(share of ten widest gaps)")
 
@@ -152,7 +159,8 @@ def main():
     fig.get_layout_engine().set(rect=(0, 0.07, 1, 0.93))
     st.save(fig, OUT)
     print("runs per game:", n1)
-    for nm, dd in (("pbe fixed", pf), ("pbe learned", pl), ("hse fixed", hf), ("hse learned", hl),
+    for nm, dd in (("gap fixed", gf), ("gap learned", gl), ("gap+pbe fixed", gcf), ("gap+pbe learned", gcl),
+                   ("pbe fixed", pf), ("pbe learned", pl), ("hse fixed", hf), ("hse learned", hl),
                    ("hse+pbe fixed", cf), ("hse+pbe learned", cl)):
         print(nm, {k: tuple(round(x, 3) for x in v) for k, v in dd.items()})
 

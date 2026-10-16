@@ -8,6 +8,8 @@ organisation of experiment 14 inside itself; all swarms share one batch of 4.
   (a) the same seven bodies grouped into several swarms (PBE receiver, results
       published between swarms): team value minus the one-swarm value, per
       slot rule, mean and 90% bootstrap interval over 100 matched campaigns;
+      colour = receiver (PBE blue, HSE06 red, r2SCAN green, as in the
+      emergent-swarm figure), marker = slot rule;
   (b) extra swarms that copy the team (14 or 21 bodies, or 7 + 3), isolated or
       published, per receiver: value minus the one-swarm value;
   (c) credit moved by swarm membership: Owen value minus Shapley value,
@@ -53,14 +55,17 @@ ax = axs[0]
 GROUPS = [("split_1_6", "1 + 6\n(MACE-MP-0 alone)"), ("split_2_5s", "2 + 5\n(strong pair)"),
           ("split_2_5w", "2 + 5\n(weak pair)"), ("split_4_3", "4 + 3"),
           ("split_2_2_3", "2 + 2 + 3"), ("split_1x7", "7 swarms of 1")]
-RULES = [("equal", "equal share per swarm", "#8C8C8C", "o"), ("size", "share by size", "#2E5FA3", "s"),
-         ("record", "share by record", "#C4452C", "^")]
+# one colour per receiver across the swarm figures (PBE blue, HSE06 red,
+# r2SCAN green, as in Fig. 5(a)); marker shape and fill encode the rule
+PBE_C = "#2E5FA3"
+RULES = [("equal", "equal share per swarm", "o", PBE_C), ("size", "share by size", "s", "white"),
+         ("record", "share by record", "^", PBE_C)]
 x = np.arange(len(GROUPS))
-for k, (rule, lab, col, mk) in enumerate(RULES):
+for k, (rule, lab, mk, fill) in enumerate(RULES):
     m, lo, hi = zip(*[diff("qe_pbe", f"{g}|emergent|{rule}|published") for g, _ in GROUPS])
     xx = x + (k - 1) * 0.22
-    ax.errorbar(xx, m, yerr=[np.array(m) - lo, np.array(hi) - m], fmt=mk, color=col, ms=3.5,
-                elinewidth=0.9, capsize=0, label=lab)
+    ax.errorbar(xx, m, yerr=[np.array(m) - lo, np.array(hi) - m], fmt=mk, color=PBE_C, mfc=fill,
+                ms=4, elinewidth=0.9, capsize=0, label=lab)
 ax.axhline(0, color="#333333", lw=0.6)
 ax.set_xticks(x)
 ax.set_xticklabels([g[1] for g in GROUPS], fontsize=7)
@@ -86,7 +91,8 @@ ax.set_xticks(x)
 ax.set_xticklabels([g[1] for g in DUPS])
 ax.set_ylabel("Value minus\none seven-body swarm")
 ax.set_title("(b) Copies of the team, same budget", loc="left")
-ax.legend(frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.22), fontsize=7, ncol=5, columnspacing=0.8, handletextpad=0.2)
+ax.set_ylim(-0.075, 0.105)
+ax.legend(frameon=False, loc="upper left", fontsize=7, ncol=3, columnspacing=0.8, handletextpad=0.2)
 
 # (c) credit moved between swarms by the Owen value, against swarm size
 ax = axs[2]
