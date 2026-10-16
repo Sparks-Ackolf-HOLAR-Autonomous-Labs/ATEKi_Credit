@@ -1,5 +1,7 @@
 # ATEKi
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23413476.svg)](https://doi.org/10.5281/zenodo.23413476)
+
 **Paper.** Fairly Dividing a Discovery Campaign's Outcome Among Its Members, Meetings, and Borrowed Knowledge (submitted to Transactions on Machine Learning Research).
 
 This repository holds the code and data behind the paper: the scripts that draw its figures, the result files they read, the code that produced those results, and the archived or computed inputs that code reads. The manuscript itself is not part of the repository. Every script runs unchanged from the repository root.
