@@ -1,0 +1,214 @@
+{
+  "experiment": "20_data_valuation_estimators_almgsi",
+  "receiver": "qe_pbe",
+  "trust": "fixed",
+  "players": [
+    "mace_relax",
+    "gpumd_nep89_md",
+    "lammps_meam_md",
+    "archive_mp"
+  ],
+  "n_runs": 40,
+  "w_grand": 0.06800579519929284,
+  "w_grand_run_se": 0.025199583475722855,
+  "estimators": [
+    "shapley",
+    "banzhaf",
+    "loo",
+    "beta_4_1",
+    "beta_16_1",
+    "beta_1_4",
+    "beta_1_16"
+  ],
+  "values": {
+    "shapley": [
+      0.22584191889352043,
+      -0.19656599498747968,
+      -0.10937563011305165,
+      0.14810550140630382
+    ],
+    "banzhaf": [
+      0.1930158555640683,
+      -0.21406593734183366,
+      -0.1093410013414677,
+      0.14718558223898526
+    ],
+    "loo": [
+      0.2243546074929189,
+      -0.1589680473109477,
+      0.03683611608800774,
+      0.1458956830545114
+    ],
+    "beta_4_1": [
+      0.2737206005110363,
+      -0.19666026237639897,
+      -0.20269349041818846,
+      0.14536785653512097
+    ],
+    "beta_16_1": [
+      0.32613923487295304,
+      -0.17883762046856824,
+      -0.2424933793932349,
+      0.14894261634381983
+    ],
+    "beta_1_4": [
+      0.20422408793956498,
+      -0.18247177371507617,
+      -0.016085472825181468,
+      0.15157908161134073
+    ],
+    "beta_1_16": [
+      0.21565536499493518,
+      -0.16625531206306532,
+      0.02364705979415658,
+      0.14979365477123002
+    ]
+  },
+  "near_duplicate_pbe_mace": null,
+  "consistency": {
+    "shapley": {
+      "mean_pairwise_spearman": 1.0,
+      "min_pairwise_spearman": 1.0,
+      "mean_spearman_to_avg_shapley": 1.0,
+      "seeds_bottom_equals_avg_shapley_bottom": 40,
+      "seeds_with_sign_flip_vs_own_shapley": 0
+    },
+    "banzhaf": {
+      "mean_pairwise_spearman": 1.0,
+      "min_pairwise_spearman": 1.0,
+      "mean_spearman_to_avg_shapley": 1.0,
+      "seeds_bottom_equals_avg_shapley_bottom": 40,
+      "seeds_with_sign_flip_vs_own_shapley": 0
+    },
+    "loo": {
+      "mean_pairwise_spearman": 1.0,
+      "min_pairwise_spearman": 1.0,
+      "mean_spearman_to_avg_shapley": 1.0,
+      "seeds_bottom_equals_avg_shapley_bottom": 40,
+      "seeds_with_sign_flip_vs_own_shapley": 40
+    },
+    "beta_4_1": {
+      "mean_pairwise_spearman": 0.9138461538461538,
+      "min_pairwise_spearman": 0.7999999999999999,
+      "mean_spearman_to_avg_shapley": 0.8599999999999998,
+      "seeds_bottom_equals_avg_shapley_bottom": 12,
+      "seeds_with_sign_flip_vs_own_shapley": 3
+    },
+    "beta_16_1": {
+      "mean_pairwise_spearman": 1.0,
+      "min_pairwise_spearman": 1.0,
+      "mean_spearman_to_avg_shapley": 0.7999999999999999,
+      "seeds_bottom_equals_avg_shapley_bottom": 0,
+      "seeds_with_sign_flip_vs_own_shapley": 9
+    },
+    "beta_1_4": {
+      "mean_pairwise_spearman": 1.0,
+      "min_pairwise_spearman": 1.0,
+      "mean_spearman_to_avg_shapley": 1.0,
+      "seeds_bottom_equals_avg_shapley_bottom": 40,
+      "seeds_with_sign_flip_vs_own_shapley": 1
+    },
+    "beta_1_16": {
+      "mean_pairwise_spearman": 1.0,
+      "min_pairwise_spearman": 1.0,
+      "mean_spearman_to_avg_shapley": 1.0,
+      "seeds_bottom_equals_avg_shapley_bottom": 40,
+      "seeds_with_sign_flip_vs_own_shapley": 39
+    }
+  },
+  "tmc": [
+    {
+      "tolerance_fraction_of_wN": 0.0,
+      "tolerance": 0.0,
+      "permutations": 12,
+      "median_max_abs_error": 0.044015357581602015,
+      "p90_max_abs_error": 0.07827758163426886,
+      "repeats_with_sign_flip": 0,
+      "repeats": 50,
+      "mean_value_lookups": 48.0
+    },
+    {
+      "tolerance_fraction_of_wN": 0.0,
+      "tolerance": 0.0,
+      "permutations": 1000,
+      "median_max_abs_error": 0.004436799304624921,
+      "p90_max_abs_error": 0.00923463666390235,
+      "repeats_with_sign_flip": 0,
+      "repeats": 50,
+      "mean_value_lookups": 4000.0
+    },
+    {
+      "tolerance_fraction_of_wN": 0.01,
+      "tolerance": 0.0006800579519929284,
+      "permutations": 12,
+      "median_max_abs_error": 0.04188297179714884,
+      "p90_max_abs_error": 0.06299932225725982,
+      "repeats_with_sign_flip": 0,
+      "repeats": 50,
+      "mean_value_lookups": 48.0
+    },
+    {
+      "tolerance_fraction_of_wN": 0.01,
+      "tolerance": 0.0006800579519929284,
+      "permutations": 1000,
+      "median_max_abs_error": 0.004481857652514791,
+      "p90_max_abs_error": 0.008011935710318266,
+      "repeats_with_sign_flip": 0,
+      "repeats": 50,
+      "mean_value_lookups": 4000.0
+    },
+    {
+      "tolerance_fraction_of_wN": 0.05,
+      "tolerance": 0.0034002897599646423,
+      "permutations": 12,
+      "median_max_abs_error": 0.04266064718083658,
+      "p90_max_abs_error": 0.08445105096989752,
+      "repeats_with_sign_flip": 0,
+      "repeats": 50,
+      "mean_value_lookups": 48.0
+    },
+    {
+      "tolerance_fraction_of_wN": 0.05,
+      "tolerance": 0.0034002897599646423,
+      "permutations": 1000,
+      "median_max_abs_error": 0.0043992823194321795,
+      "p90_max_abs_error": 0.00815806279546658,
+      "repeats_with_sign_flip": 0,
+      "repeats": 50,
+      "mean_value_lookups": 4000.0
+    },
+    {
+      "tolerance_fraction_of_wN": 0.25,
+      "tolerance": 0.01700144879982321,
+      "permutations": 12,
+      "median_max_abs_error": 0.051458967706020084,
+      "p90_max_abs_error": 0.0850458665732732,
+      "repeats_with_sign_flip": 0,
+      "repeats": 50,
+      "mean_value_lookups": 44.0
+    },
+    {
+      "tolerance_fraction_of_wN": 0.25,
+      "tolerance": 0.01700144879982321,
+      "permutations": 1000,
+      "median_max_abs_error": 0.03384372762796771,
+      "p90_max_abs_error": 0.038143325972307913,
+      "repeats_with_sign_flip": 0,
+      "repeats": 50,
+      "mean_value_lookups": 3668.84
+    }
+  ],
+  "tmc_bias_at_run_noise": {
+    "tolerance": 0.025199583475722855,
+    "permutations": 1000,
+    "repeats": 20,
+    "mean_bias": [
+      -0.03068057146982922,
+      0.03325382534583099,
+      -0.0004932633799419744,
+      0.0006321764285717457
+    ],
+    "max_abs_bias": 0.03325382534583099
+  },
+  "check_vs_campaign_shapley": 1.942890293094024e-16
+}

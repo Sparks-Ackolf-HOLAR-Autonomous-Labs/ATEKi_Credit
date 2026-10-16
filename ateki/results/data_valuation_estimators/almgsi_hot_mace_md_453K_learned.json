@@ -1,0 +1,291 @@
+{
+  "experiment": "20_data_valuation_estimators_almgsi_hot",
+  "receiver": "mace_md@453K",
+  "trust": "learned",
+  "players": [
+    "mace_md@300K",
+    "lammps_meam_md@453K",
+    "gpumd_nep89_md@453K",
+    "mace_relax@0K",
+    "qe_pbe@0K",
+    "qe_hse06@0K"
+  ],
+  "n_runs": 20,
+  "w_grand": 0.23054232235936428,
+  "w_grand_run_se": 0.016100596317268595,
+  "estimators": [
+    "shapley",
+    "banzhaf",
+    "loo",
+    "beta_4_1",
+    "beta_16_1",
+    "beta_1_4",
+    "beta_1_16"
+  ],
+  "values": {
+    "shapley": [
+      0.13042766084047078,
+      -0.021363260996395687,
+      -0.015908181120940158,
+      0.09469268607052578,
+      0.03246154372196016,
+      0.010231873843743486
+    ],
+    "banzhaf": [
+      0.10427136812439851,
+      -0.013783288063930556,
+      -0.015139507235041776,
+      0.07237699850914527,
+      -0.015923899960358874,
+      -0.013853698994499904
+    ],
+    "loo": [
+      -0.05143302072095157,
+      -0.0963601615974653,
+      -0.15160499488192536,
+      -0.0688074193185656,
+      -0.018664424458685436,
+      -0.028908519057800786
+    ],
+    "beta_4_1": [
+      0.257324536719542,
+      0.0012483779245150949,
+      0.04998285402665562,
+      0.20598433586702394,
+      0.12547076267277182,
+      0.06453252068238975
+    ],
+    "beta_16_1": [
+      0.3617789609840583,
+      0.023476177471358255,
+      0.10260756582994396,
+      0.2981847616374905,
+      0.23416431422623538,
+      0.12056835837249556
+    ],
+    "beta_1_4": [
+      0.025703727660711946,
+      -0.048049573377628475,
+      -0.08008564688498643,
+      0.002352100348541185,
+      -0.018662511526556572,
+      -0.023633685246173437
+    ],
+    "beta_1_16": [
+      -0.02249615943381061,
+      -0.07644806000459028,
+      -0.12417057032545611,
+      -0.041707971979410285,
+      -0.01955086429846542,
+      -0.027793018925741524
+    ]
+  },
+  "near_duplicate_pairs": [
+    {
+      "pair": [
+        "qe_pbe@0K",
+        "qe_hse06@0K"
+      ],
+      "loo": [
+        -0.018664424458685436,
+        -0.028908519057800786
+      ],
+      "second_alone": 0.009303077476821131,
+      "second_mean_with_others": 0.0059789568209267395,
+      "second_range_with_others": [
+        -0.11686577414422084,
+        0.29552495441513527
+      ]
+    },
+    {
+      "pair": [
+        "mace_relax@0K",
+        "mace_md@300K"
+      ],
+      "loo": [
+        -0.0688074193185656,
+        -0.05143302072095157
+      ],
+      "second_alone": 0.06254551462177438,
+      "second_mean_with_others": 0.07990995437031433,
+      "second_range_with_others": [
+        -0.05143302072095157,
+        0.1522325876574347
+      ]
+    }
+  ],
+  "consistency": {
+    "shapley": {
+      "mean_pairwise_spearman": 1.0,
+      "min_pairwise_spearman": 1.0,
+      "mean_spearman_to_avg_shapley": 1.0,
+      "seeds_bottom_equals_avg_shapley_bottom": 20,
+      "seeds_with_sign_flip_vs_own_shapley": 0
+    },
+    "banzhaf": {
+      "mean_pairwise_spearman": 1.0,
+      "min_pairwise_spearman": 1.0,
+      "mean_spearman_to_avg_shapley": 0.48571428571428577,
+      "seeds_bottom_equals_avg_shapley_bottom": 0,
+      "seeds_with_sign_flip_vs_own_shapley": 20
+    },
+    "loo": {
+      "mean_pairwise_spearman": 1.0,
+      "min_pairwise_spearman": 1.0,
+      "mean_spearman_to_avg_shapley": 0.48571428571428577,
+      "seeds_bottom_equals_avg_shapley_bottom": 0,
+      "seeds_with_sign_flip_vs_own_shapley": 20
+    },
+    "beta_4_1": {
+      "mean_pairwise_spearman": 1.0,
+      "min_pairwise_spearman": 1.0,
+      "mean_spearman_to_avg_shapley": 1.0,
+      "seeds_bottom_equals_avg_shapley_bottom": 20,
+      "seeds_with_sign_flip_vs_own_shapley": 19
+    },
+    "beta_16_1": {
+      "mean_pairwise_spearman": 1.0,
+      "min_pairwise_spearman": 1.0,
+      "mean_spearman_to_avg_shapley": 1.0,
+      "seeds_bottom_equals_avg_shapley_bottom": 20,
+      "seeds_with_sign_flip_vs_own_shapley": 19
+    },
+    "beta_1_4": {
+      "mean_pairwise_spearman": 1.0,
+      "min_pairwise_spearman": 1.0,
+      "mean_spearman_to_avg_shapley": 0.9428571428571428,
+      "seeds_bottom_equals_avg_shapley_bottom": 0,
+      "seeds_with_sign_flip_vs_own_shapley": 20
+    },
+    "beta_1_16": {
+      "mean_pairwise_spearman": 1.0,
+      "min_pairwise_spearman": 1.0,
+      "mean_spearman_to_avg_shapley": 0.6571428571428571,
+      "seeds_bottom_equals_avg_shapley_bottom": 0,
+      "seeds_with_sign_flip_vs_own_shapley": 20
+    }
+  },
+  "tmc": [
+    {
+      "tolerance_fraction_of_wN": 0.0,
+      "tolerance": 0.0,
+      "permutations": 18,
+      "median_max_abs_error": 0.04626065278492203,
+      "p90_max_abs_error": 0.08570345698715433,
+      "repeats_with_sign_flip": 33,
+      "repeats": 50,
+      "mean_value_lookups": 108.0
+    },
+    {
+      "tolerance_fraction_of_wN": 0.0,
+      "tolerance": 0.0,
+      "permutations": 1000,
+      "median_max_abs_error": 0.006427439346929582,
+      "p90_max_abs_error": 0.011645080342914563,
+      "repeats_with_sign_flip": 0,
+      "repeats": 50,
+      "mean_value_lookups": 6000.0
+    },
+    {
+      "tolerance_fraction_of_wN": 0.01,
+      "tolerance": 0.0023054232235936428,
+      "permutations": 18,
+      "median_max_abs_error": 0.05207668236305952,
+      "p90_max_abs_error": 0.07559258211838661,
+      "repeats_with_sign_flip": 30,
+      "repeats": 50,
+      "mean_value_lookups": 105.18
+    },
+    {
+      "tolerance_fraction_of_wN": 0.01,
+      "tolerance": 0.0023054232235936428,
+      "permutations": 1000,
+      "median_max_abs_error": 0.006909846841355733,
+      "p90_max_abs_error": 0.010536019549708226,
+      "repeats_with_sign_flip": 0,
+      "repeats": 50,
+      "mean_value_lookups": 5850.84
+    },
+    {
+      "tolerance_fraction_of_wN": 0.05,
+      "tolerance": 0.011527116117968216,
+      "permutations": 18,
+      "median_max_abs_error": 0.047805608207036825,
+      "p90_max_abs_error": 0.07974620397444196,
+      "repeats_with_sign_flip": 37,
+      "repeats": 50,
+      "mean_value_lookups": 93.72
+    },
+    {
+      "tolerance_fraction_of_wN": 0.05,
+      "tolerance": 0.011527116117968216,
+      "permutations": 1000,
+      "median_max_abs_error": 0.010735435574716895,
+      "p90_max_abs_error": 0.014807133914718155,
+      "repeats_with_sign_flip": 3,
+      "repeats": 50,
+      "mean_value_lookups": 5245.2
+    },
+    {
+      "tolerance_fraction_of_wN": 0.25,
+      "tolerance": 0.05763558058984107,
+      "permutations": 18,
+      "median_max_abs_error": 0.05182760028524993,
+      "p90_max_abs_error": 0.08194289144184082,
+      "repeats_with_sign_flip": 40,
+      "repeats": 50,
+      "mean_value_lookups": 56.46
+    },
+    {
+      "tolerance_fraction_of_wN": 0.25,
+      "tolerance": 0.05763558058984107,
+      "permutations": 1000,
+      "median_max_abs_error": 0.024568166589683388,
+      "p90_max_abs_error": 0.03111757438128056,
+      "repeats_with_sign_flip": 49,
+      "repeats": 50,
+      "mean_value_lookups": 3146.84
+    }
+  ],
+  "tmc_bias_at_run_noise": {
+    "tolerance": 0.016100596317268595,
+    "permutations": 1000,
+    "repeats": 20,
+    "mean_bias": [
+      -0.004106029930694227,
+      0.002409339662900717,
+      0.009663754607067079,
+      -0.002083393229361602,
+      -0.003289507505871883,
+      -0.0027836419662098932
+    ],
+    "max_abs_bias": 0.009663754607067079
+  },
+  "check_vs_temperature_study": 5.551115123125783e-17,
+  "variant": "seeds",
+  "distinct_nonempty_run_games": 1,
+  "top_by": {
+    "shapley": "mace_md@300K",
+    "banzhaf": "mace_md@300K",
+    "loo": "qe_pbe@0K",
+    "beta_4_1": "mace_md@300K",
+    "beta_16_1": "mace_md@300K",
+    "beta_1_4": "mace_md@300K",
+    "beta_1_16": "qe_pbe@0K"
+  },
+  "bottom_by": {
+    "shapley": "lammps_meam_md@453K",
+    "banzhaf": "qe_pbe@0K",
+    "loo": "gpumd_nep89_md@453K",
+    "beta_4_1": "lammps_meam_md@453K",
+    "beta_16_1": "lammps_meam_md@453K",
+    "beta_1_4": "gpumd_nep89_md@453K",
+    "beta_1_16": "gpumd_nep89_md@453K"
+  },
+  "loo_shapley_sign_disagreements": [
+    "mace_md@300K",
+    "mace_relax@0K",
+    "qe_pbe@0K",
+    "qe_hse06@0K"
+  ]
+}

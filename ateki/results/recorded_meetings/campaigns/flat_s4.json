@@ -1,0 +1,2542 @@
+{
+ "arm": "flat",
+ "seed": 4,
+ "model": "Qwen/Qwen3-4B-Instruct-2507",
+ "temperature": 0.7,
+ "rounds": 12,
+ "receiver": "expt_zhuo",
+ "agents": {
+  "agent1": "mp_gga",
+  "agent2": "mp_r2scan",
+  "agent3": "jarvis_optb88vdw",
+  "agent4": "jarvis_mbj",
+  "agent5": "snumat_hse"
+ },
+ "donor_ranks": {
+  "agent1": [
+   "boride",
+   "halide",
+   "oxide",
+   "nitride",
+   "chalcogenide",
+   "pnictide",
+   "other"
+  ],
+  "agent2": [
+   "oxide",
+   "boride",
+   "halide",
+   "nitride",
+   "chalcogenide",
+   "other",
+   "pnictide"
+  ],
+  "agent3": [
+   "halide",
+   "oxide",
+   "boride",
+   "nitride",
+   "chalcogenide",
+   "other",
+   "pnictide"
+  ],
+  "agent4": [
+   "boride",
+   "oxide",
+   "halide",
+   "nitride",
+   "chalcogenide",
+   "pnictide",
+   "other"
+  ],
+  "agent5": [
+   "nitride",
+   "oxide",
+   "halide",
+   "boride",
+   "chalcogenide",
+   "other",
+   "pnictide"
+  ]
+ },
+ "reference_ranking": [
+  "oxide",
+  "nitride",
+  "halide",
+  "boride",
+  "chalcogenide",
+  "pnictide",
+  "other"
+ ],
+ "queries": [
+  {
+   "id": "Q1",
+   "author": "agent1",
+   "round": 1,
+   "query": [
+    "boride",
+    "oxide",
+    "nitride",
+    "chalcogenide"
+   ],
+   "result": [
+    "oxide",
+    "nitride",
+    "boride",
+    "chalcogenide"
+   ],
+   "tied": false,
+   "built_on": [],
+   "cited_authors": []
+  },
+  {
+   "id": "Q2",
+   "author": "agent2",
+   "round": 1,
+   "query": [
+    "oxide",
+    "nitride",
+    "chalcogenide",
+    "pnictide"
+   ],
+   "result": [
+    "oxide",
+    "nitride",
+    "chalcogenide",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [],
+   "cited_authors": []
+  },
+  {
+   "id": "Q3",
+   "author": "agent3",
+   "round": 1,
+   "query": [
+    "oxide",
+    "nitride",
+    "chalcogenide",
+    "halide"
+   ],
+   "result": [
+    "nitride",
+    "oxide",
+    "halide",
+    "chalcogenide"
+   ],
+   "tied": false,
+   "built_on": [],
+   "cited_authors": []
+  },
+  {
+   "id": "Q4",
+   "author": "agent4",
+   "round": 1,
+   "query": [
+    "boride",
+    "oxide",
+    "nitride",
+    "chalcogenide"
+   ],
+   "result": [
+    "oxide",
+    "nitride",
+    "boride",
+    "chalcogenide"
+   ],
+   "tied": false,
+   "built_on": [],
+   "cited_authors": []
+  },
+  {
+   "id": "Q5",
+   "author": "agent5",
+   "round": 1,
+   "query": [
+    "oxide",
+    "nitride",
+    "halide",
+    "chalcogenide"
+   ],
+   "result": [
+    "nitride",
+    "oxide",
+    "halide",
+    "chalcogenide"
+   ],
+   "tied": false,
+   "built_on": [],
+   "cited_authors": []
+  },
+  {
+   "id": "Q6",
+   "author": "agent1",
+   "round": 2,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "pnictide",
+    "chalcogenide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N1",
+    "N2",
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4"
+   ],
+   "cited_authors": [
+    "agent2",
+    "agent3",
+    "agent4"
+   ]
+  },
+  {
+   "id": "Q7",
+   "author": "agent2",
+   "round": 2,
+   "query": [
+    "oxide",
+    "halide",
+    "pnictide",
+    "other"
+   ],
+   "result": [
+    "oxide",
+    "halide",
+    "other",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5",
+    "N2"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q8",
+   "author": "agent3",
+   "round": 2,
+   "query": [
+    "halide",
+    "oxide",
+    "pnictide",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "oxide",
+    "pnictide",
+    "chalcogenide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5",
+    "N1"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q9",
+   "author": "agent4",
+   "round": 2,
+   "query": [
+    "oxide",
+    "nitride",
+    "halide",
+    "pnictide"
+   ],
+   "result": [
+    "nitride",
+    "oxide",
+    "halide",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5",
+    "N1"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q10",
+   "author": "agent5",
+   "round": 2,
+   "query": [
+    "halide",
+    "pnictide",
+    "oxide",
+    "chalcogenide"
+   ],
+   "result": [
+    "oxide",
+    "halide",
+    "chalcogenide",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5",
+    "N1"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent4"
+   ]
+  },
+  {
+   "id": "Q11",
+   "author": "agent1",
+   "round": 3,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "chalcogenide",
+    "halide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N1",
+    "N3",
+    "N5",
+    "N6",
+    "N7",
+    "Q1"
+   ],
+   "cited_authors": [
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q12",
+   "author": "agent2",
+   "round": 3,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "pnictide",
+    "chalcogenide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N2",
+    "N5",
+    "N7",
+    "Q6",
+    "Q10",
+    "Q8"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent3",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q13",
+   "author": "agent3",
+   "round": 3,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N3",
+    "N5",
+    "N7",
+    "Q3",
+    "Q5",
+    "Q6"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q14",
+   "author": "agent4",
+   "round": 3,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N1",
+    "N2",
+    "N3",
+    "N4",
+    "N5",
+    "N6"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3"
+   ]
+  },
+  {
+   "id": "Q15",
+   "author": "agent5",
+   "round": 3,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N1",
+    "N2",
+    "N3",
+    "N4",
+    "N5",
+    "N6"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent4"
+   ]
+  },
+  {
+   "id": "Q16",
+   "author": "agent1",
+   "round": 4,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "chalcogenide",
+    "halide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N1",
+    "N3",
+    "N5",
+    "N8",
+    "N9",
+    "N10"
+   ],
+   "cited_authors": [
+    "agent2",
+    "agent3"
+   ]
+  },
+  {
+   "id": "Q17",
+   "author": "agent2",
+   "round": 4,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "pnictide",
+    "chalcogenide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N3",
+    "N5",
+    "N7",
+    "N8",
+    "N9",
+    "N10"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent3",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q18",
+   "author": "agent3",
+   "round": 4,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "other",
+    "chalcogenide",
+    "halide",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "N5",
+    "N10",
+    "N12",
+    "N3",
+    "N8",
+    "N9"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q19",
+   "author": "agent4",
+   "round": 4,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "chalcogenide",
+    "halide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N1",
+    "N5",
+    "N11",
+    "N10",
+    "N8",
+    "N9"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3"
+   ]
+  },
+  {
+   "id": "Q20",
+   "author": "agent5",
+   "round": 4,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "pnictide",
+    "chalcogenide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N1",
+    "N2",
+    "N3",
+    "N5",
+    "N8",
+    "N10"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3"
+   ]
+  },
+  {
+   "id": "Q21",
+   "author": "agent1",
+   "round": 5,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N1",
+    "N2",
+    "N3",
+    "N5",
+    "N6",
+    "N13"
+   ],
+   "cited_authors": [
+    "agent2",
+    "agent3",
+    "agent4"
+   ]
+  },
+  {
+   "id": "Q22",
+   "author": "agent2",
+   "round": 5,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "other",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "N1",
+    "N2",
+    "N5",
+    "N10",
+    "N13",
+    "N14"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent3"
+   ]
+  },
+  {
+   "id": "Q23",
+   "author": "agent3",
+   "round": 5,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "other",
+    "pnictide",
+    "chalcogenide"
+   ],
+   "tied": false,
+   "built_on": [
+    "N1",
+    "N2",
+    "N3",
+    "N5",
+    "N6",
+    "N10",
+    "N15"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent4"
+   ]
+  },
+  {
+   "id": "Q24",
+   "author": "agent4",
+   "round": 5,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "other",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "N1",
+    "N2",
+    "N5",
+    "N11",
+    "N13",
+    "N14"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3"
+   ]
+  },
+  {
+   "id": "Q25",
+   "author": "agent5",
+   "round": 5,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "pnictide",
+    "halide",
+    "chalcogenide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N1",
+    "N2",
+    "N3",
+    "N4",
+    "N5",
+    "N6"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent4"
+   ]
+  },
+  {
+   "id": "Q26",
+   "author": "agent1",
+   "round": 6,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5",
+    "Q6"
+   ],
+   "cited_authors": [
+    "agent2",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q27",
+   "author": "agent2",
+   "round": 6,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "pnictide",
+    "chalcogenide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N3",
+    "N5",
+    "N6",
+    "N7",
+    "N10",
+    "N14"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q28",
+   "author": "agent3",
+   "round": 6,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "other",
+    "pnictide",
+    "halide",
+    "chalcogenide"
+   ],
+   "tied": false,
+   "built_on": [
+    "N3",
+    "N5",
+    "N10",
+    "N15",
+    "N20",
+    "N22"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q29",
+   "author": "agent4",
+   "round": 6,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5",
+    "Q6"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q30",
+   "author": "agent5",
+   "round": 6,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "pnictide",
+    "halide",
+    "chalcogenide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5",
+    "Q6"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent4"
+   ]
+  },
+  {
+   "id": "Q31",
+   "author": "agent1",
+   "round": 7,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N8",
+    "N12",
+    "N13",
+    "N14",
+    "N15",
+    "N24"
+   ],
+   "cited_authors": [
+    "agent2",
+    "agent3",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q32",
+   "author": "agent2",
+   "round": 7,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "pnictide",
+    "chalcogenide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N8",
+    "N9",
+    "N10",
+    "N11",
+    "N12",
+    "N13"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q33",
+   "author": "agent3",
+   "round": 7,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N8",
+    "N9",
+    "N10",
+    "N11",
+    "N12",
+    "N13"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q34",
+   "author": "agent4",
+   "round": 7,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "other",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "N8",
+    "N9",
+    "N10",
+    "N11",
+    "N12",
+    "N13"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q35",
+   "author": "agent5",
+   "round": 7,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N8",
+    "N9",
+    "N10",
+    "N11",
+    "N12",
+    "N13"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent4"
+   ]
+  },
+  {
+   "id": "Q36",
+   "author": "agent1",
+   "round": 8,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "other",
+    "halide",
+    "pnictide",
+    "chalcogenide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q6",
+    "Q7",
+    "Q8",
+    "Q9",
+    "Q10",
+    "Q11"
+   ],
+   "cited_authors": [
+    "agent2",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q37",
+   "author": "agent2",
+   "round": 8,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "chalcogenide",
+    "pnictide",
+    "halide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q6",
+    "Q7",
+    "Q8",
+    "Q9",
+    "Q10",
+    "N29"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q38",
+   "author": "agent3",
+   "round": 8,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "other",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q6",
+    "Q7",
+    "Q8",
+    "Q9",
+    "Q10",
+    "N30"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q39",
+   "author": "agent4",
+   "round": 8,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "other",
+    "chalcogenide",
+    "halide",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q6",
+    "Q7",
+    "Q8",
+    "Q9",
+    "Q10",
+    "Q11"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q40",
+   "author": "agent5",
+   "round": 8,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "other",
+    "chalcogenide",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q6",
+    "Q7",
+    "Q8",
+    "Q9",
+    "Q10",
+    "Q11"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent4"
+   ]
+  },
+  {
+   "id": "Q41",
+   "author": "agent1",
+   "round": 9,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N18",
+    "N19",
+    "N20",
+    "N21",
+    "N22",
+    "N28"
+   ],
+   "cited_authors": [
+    "agent2",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q42",
+   "author": "agent2",
+   "round": 9,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "other",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "N18",
+    "N19",
+    "N20",
+    "N21",
+    "N22",
+    "N24"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q43",
+   "author": "agent3",
+   "round": 9,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "other",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "N18",
+    "N19",
+    "N20",
+    "N21",
+    "N22",
+    "N35"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q44",
+   "author": "agent4",
+   "round": 9,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N18",
+    "N19",
+    "N20",
+    "N21",
+    "N22",
+    "N34"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q45",
+   "author": "agent5",
+   "round": 9,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "other",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "N18",
+    "N19",
+    "N20",
+    "N21",
+    "N22",
+    "N28"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent4"
+   ]
+  },
+  {
+   "id": "Q46",
+   "author": "agent1",
+   "round": 10,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "other",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q16",
+    "Q17",
+    "Q18",
+    "Q19",
+    "Q20",
+    "N23"
+   ],
+   "cited_authors": [
+    "agent2",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q47",
+   "author": "agent2",
+   "round": 10,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "pnictide",
+    "chalcogenide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q16",
+    "Q17",
+    "Q18",
+    "Q19",
+    "Q20",
+    "N23"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q48",
+   "author": "agent3",
+   "round": 10,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N23",
+    "N24",
+    "N25",
+    "N26",
+    "N27",
+    "N30"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q49",
+   "author": "agent4",
+   "round": 10,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N23",
+    "N24",
+    "N25",
+    "N26",
+    "N27",
+    "N31"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q50",
+   "author": "agent5",
+   "round": 10,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "pnictide",
+    "chalcogenide",
+    "other",
+    "halide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q16",
+    "Q17",
+    "Q18",
+    "Q19",
+    "Q20",
+    "N23"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent4"
+   ]
+  },
+  {
+   "id": "Q51",
+   "author": "agent1",
+   "round": 11,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "other",
+    "chalcogenide",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q21",
+    "Q22",
+    "Q23",
+    "Q24",
+    "Q25",
+    "Q31",
+    "Q32",
+    "Q33",
+    "Q34",
+    "Q35",
+    "Q36",
+    "Q37",
+    "Q38",
+    "Q39",
+    "Q40",
+    "Q41",
+    "Q42",
+    "Q43",
+    "Q44",
+    "Q45",
+    "Q46",
+    "Q47",
+    "Q48",
+    "Q49",
+    "Q50"
+   ],
+   "cited_authors": [
+    "agent2",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q52",
+   "author": "agent2",
+   "round": 11,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "pnictide",
+    "chalcogenide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q21",
+    "Q22",
+    "Q23",
+    "Q24",
+    "Q25",
+    "Q35",
+    "Q41",
+    "Q42",
+    "Q43",
+    "Q44",
+    "Q45",
+    "Q46",
+    "Q47",
+    "Q48",
+    "Q49",
+    "Q50"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q53",
+   "author": "agent3",
+   "round": 11,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "N30",
+    "N35",
+    "N45",
+    "N47",
+    "Q21",
+    "Q50"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q54",
+   "author": "agent4",
+   "round": 11,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q21",
+    "Q22",
+    "Q23",
+    "Q24",
+    "Q25",
+    "Q35"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q55",
+   "author": "agent5",
+   "round": 11,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "other",
+    "chalcogenide",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q21",
+    "Q22",
+    "Q23",
+    "Q24",
+    "Q25",
+    "Q35",
+    "Q36",
+    "Q37",
+    "Q38",
+    "Q39",
+    "Q40",
+    "Q41",
+    "Q42",
+    "Q43",
+    "Q44",
+    "Q45",
+    "Q46",
+    "Q47",
+    "Q48",
+    "Q49",
+    "Q50"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent4"
+   ]
+  },
+  {
+   "id": "Q56",
+   "author": "agent1",
+   "round": 12,
+   "query": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "other",
+    "pnictide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q26",
+    "Q27",
+    "Q28",
+    "Q29",
+    "Q30",
+    "Q31"
+   ],
+   "cited_authors": [
+    "agent2",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q57",
+   "author": "agent2",
+   "round": 12,
+   "query": [
+    "oxide",
+    "boride",
+    "nitride",
+    "chalcogenide"
+   ],
+   "result": [
+    "boride",
+    "oxide",
+    "nitride",
+    "chalcogenide"
+   ],
+   "tied": false,
+   "built_on": [
+    "N33",
+    "N34",
+    "N35",
+    "N36",
+    "N37",
+    "N44"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent3",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q58",
+   "author": "agent3",
+   "round": 12,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q26",
+    "Q27",
+    "Q28",
+    "Q29",
+    "Q30",
+    "Q31"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent4",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q59",
+   "author": "agent4",
+   "round": 12,
+   "query": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "result": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q26",
+    "Q27",
+    "Q28",
+    "Q29",
+    "Q30",
+    "Q31"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent5"
+   ]
+  },
+  {
+   "id": "Q60",
+   "author": "agent5",
+   "round": 12,
+   "query": [
+    "halide",
+    "pnictide",
+    "other",
+    "chalcogenide"
+   ],
+   "result": [
+    "halide",
+    "chalcogenide",
+    "pnictide",
+    "other"
+   ],
+   "tied": false,
+   "built_on": [
+    "Q26",
+    "Q27",
+    "Q28",
+    "Q29",
+    "Q30",
+    "Q31"
+   ],
+   "cited_authors": [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent4"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "id": "N1",
+   "author": "agent1",
+   "round": 1,
+   "type": "fact",
+   "text": "Based on private knowledge from the Materials Project GGA/GGA+U database, the computed optical band gaps (widest to narrowest) are: boride > halide > oxide > nitride > chalcogenide > pnictide > other. This provides a baseline expectation, though measured values may differ due to experimental noise o"
+  },
+  {
+   "id": "N2",
+   "author": "agent2",
+   "round": 1,
+   "type": "fact",
+   "text": "Based on private knowledge from the Materials Project r2SCAN database, the computed optical band gaps (widest to narrowest) are: oxide > boride > halide > nitride > chalcogenide > other > pnictide. This provides a priori expectation that oxide has the widest gap, followed by nitride, chalcogenide, a"
+  },
+  {
+   "id": "N3",
+   "author": "agent1",
+   "round": 2,
+   "type": "claim",
+   "text": "Given the discrepancy between computed and measured gaps, and the consistent trend in earlier queries placing oxide and nitride above halide and chalcogenide, I propose a query targeting halide, pnictide, other, and chalcogenide to better assess the relative positions of families with lower computed"
+  },
+  {
+   "id": "N4",
+   "author": "agent2",
+   "round": 2,
+   "type": "claim",
+   "text": "Given the consistent trend in measured results (oxide > nitride in multiple queries) and the r2SCAN computed order (oxide > boride > halide > nitride > chalcogenide > other > pnictide), I claim that oxide has the widest measured gap. Among halide, pnictide, and other, the computed gap order suggests"
+  },
+  {
+   "id": "N5",
+   "author": "agent3",
+   "round": 2,
+   "type": "claim",
+   "text": "Based on the private knowledge that computed gaps (JARVIS-DFT OptB88vdW) order families as halide > oxide > boride > nitride > chalcogenide > other > pnictide, and given that experimental measurements often deviate due to noise, I propose a query focusing on halide, oxide, pnictide, and chalcogenide"
+  },
+  {
+   "id": "N6",
+   "author": "agent4",
+   "round": 2,
+   "type": "claim",
+   "text": "Given the recurring trend in measured results where oxide and nitride dominate the top two positions, and considering the private knowledge that computed gaps suggest oxide > nitride > halide > chalcogenide > pnictide > other, I propose a query focusing on oxide, nitride, halide, and pnictide to bet"
+  },
+  {
+   "id": "N7",
+   "author": "agent5",
+   "round": 2,
+   "type": "claim",
+   "text": "Given the recurring pattern in measured results where oxide and nitride dominate the top two positions, and the private knowledge indicating computed gaps (e.g., nitride > oxide > halide > chalcogenide), I hypothesize that halide and pnictide may be outliers in measured gaps. This query targets hali"
+  },
+  {
+   "id": "N8",
+   "author": "agent1",
+   "round": 3,
+   "type": "claim",
+   "text": "Targeting halide, pnictide, other, and chalcogenide to resolve discrepancies in measured gaps relative to computed trends. These families show variability in computed order (e.g., halide > oxide vs. oxide > halide), and experimental noise may mask true family-level trends. This query aims to clarify"
+  },
+  {
+   "id": "N9",
+   "author": "agent2",
+   "round": 3,
+   "type": "claim",
+   "text": "Given the private knowledge that computed gaps vary across databases (e.g., r2SCAN places oxide > halide > nitride, while JARVIS-DFT places halide > oxide), and the observed experimental noise in measured gaps\u2014especially for halide, pnictide, and other\u2014this query targets families where computed and "
+  },
+  {
+   "id": "N10",
+   "author": "agent3",
+   "round": 3,
+   "type": "claim",
+   "text": "Given the private knowledge from JARVIS-DFT OptB88vdW that halide > oxide > boride > nitride > chalcogenide > other > pnictide, and the observed experimental noise in measured gaps (especially for pnictide and other), this query targets halide, pnictide, other, and chalcogenide to resolve discrepanc"
+  },
+  {
+   "id": "N11",
+   "author": "agent4",
+   "round": 3,
+   "type": "claim",
+   "text": "Given the private knowledge from JARVIS-DFT TB-mBJ (boride > oxide > halide > nitride > chalcogenide > pnictide > other) and the observed experimental noise, particularly in families like halide, pnictide, and other, which appear inconsistently ranked in prior queries, this query targets halide, pni"
+  },
+  {
+   "id": "N12",
+   "author": "agent5",
+   "round": 3,
+   "type": "claim",
+   "text": "Given the private knowledge that computed gaps vary across databases but consistently place oxide and nitride above halide and chalcogenide, and considering the experimental noise that may skew measured values, this query targets the families with the most inconsistent or ambiguous measured position"
+  },
+  {
+   "id": "N13",
+   "author": "agent1",
+   "round": 4,
+   "type": "claim",
+   "text": "Given the variability in computed band gaps across databases and the experimental noise observed in prior measurements\u2014especially for halide, pnictide, and other\u2014this query targets halide, pnictide, other, and chalcogenide to resolve discrepancies in measured relative gaps. These families show incon"
+  },
+  {
+   "id": "N14",
+   "author": "agent2",
+   "round": 4,
+   "type": "claim",
+   "text": "Given the persistent variability in measured gaps for halide, pnictide, other, and chalcogenide across queries, and the conflicting computed gap orders from different databases (e.g., r2SCAN vs. JARVIS-DFT), this query targets these families to resolve inconsistencies and identify whether experiment"
+  },
+  {
+   "id": "N15",
+   "author": "agent3",
+   "round": 4,
+   "type": "claim",
+   "text": "Given the private knowledge from JARVIS-DFT OptB88vdW that halide > oxide > boride > nitride > chalcogenide > other > pnictide, and the observed experimental noise in measured gaps\u2014especially for halide, pnictide, and other\u2014this query targets halide, pnictide, other, and chalcogenide to resolve disc"
+  },
+  {
+   "id": "N16",
+   "author": "agent4",
+   "round": 4,
+   "type": "claim",
+   "text": "Given the private knowledge from JARVIS-DFT TB-mBJ that halide > oxide > nitride > chalcogenide > pnictide > other, and the observed experimental noise and inconsistent rankings in prior queries for halide, pnictide, and other, this query targets these four families to resolve discrepancies between "
+  },
+  {
+   "id": "N17",
+   "author": "agent5",
+   "round": 4,
+   "type": "claim",
+   "text": "Given the variability in computed band gaps across databases and the experimental noise observed in prior measurements\u2014especially for halide, pnictide, and other\u2014this query targets halide, pnictide, other, and chalcogenide to resolve discrepancies in measured relative gaps. These families show incon"
+  },
+  {
+   "id": "N18",
+   "author": "agent1",
+   "round": 5,
+   "type": "claim",
+   "text": "Given the persistent experimental noise and conflicting computed band gap orders across databases, particularly for halide, pnictide, other, and chalcogenide, this query targets these four families to resolve discrepancies in measured relative gaps. The private knowledge suggests variability in comp"
+  },
+  {
+   "id": "N19",
+   "author": "agent2",
+   "round": 5,
+   "type": "claim",
+   "text": "Given the persistent discrepancies in measured gaps for halide, pnictide, other, and chalcogenide across queries and the conflicting computed band gap orders from different databases (e.g., r2SCAN vs. JARVIS-DFT), this query targets these four families to resolve inconsistencies and identify whether"
+  },
+  {
+   "id": "N20",
+   "author": "agent3",
+   "round": 5,
+   "type": "claim",
+   "text": "Given the private knowledge from JARVIS-DFT OptB88vdW that halide > oxide > boride > nitride > chalcogenide > other > pnictide, and the persistent experimental noise observed in measured gaps\u2014especially for halide, pnictide, and other\u2014this query targets halide, pnictide, other, and chalcogenide to r"
+  },
+  {
+   "id": "N21",
+   "author": "agent4",
+   "round": 5,
+   "type": "claim",
+   "text": "Given the private knowledge from JARVIS-DFT TB-mBJ (boride > oxide > halide > nitride > chalcogenide > pnictide > other) and the persistent experimental noise in measured gaps\u2014especially for halide, pnictide, and other\u2014this query targets halide, pnictide, other, and chalcogenide to resolve discrepan"
+  },
+  {
+   "id": "N22",
+   "author": "agent5",
+   "round": 5,
+   "type": "claim",
+   "text": "Given the persistent experimental noise and conflicting computed gap orders across databases (e.g., halide > oxide vs. oxide > halide), and the recurring inconsistency in measured rankings for halide, pnictide, other, and chalcogenide, this query targets these four families to resolve discrepancies "
+  },
+  {
+   "id": "N23",
+   "author": "agent1",
+   "round": 6,
+   "type": "claim",
+   "text": "Given the persistent experimental noise and conflicting computed band gap orders across databases (e.g., halide > oxide vs. oxide > halide), and the recurring inconsistency in measured rankings for halide, pnictide, other, and chalcogenide, this query targets these four families to resolve discrepan"
+  },
+  {
+   "id": "N24",
+   "author": "agent2",
+   "round": 6,
+   "type": "summary",
+   "text": "Multiple agents have noted inconsistencies in measured gaps for halide, pnictide, other, and chalcogenide across queries, with conflicting computed band gap orders from different databases (e.g., r2SCAN vs. JARVIS-DFT). Given the experimental noise and variability in rankings, a focused query on the"
+  },
+  {
+   "id": "N25",
+   "author": "agent3",
+   "round": 6,
+   "type": "claim",
+   "text": "Given the private knowledge from JARVIS-DFT OptB88vdW that halide > oxide > boride > nitride > chalcogenide > other > pnictide, and the persistent experimental noise in measured gaps\u2014especially for halide, pnictide, and other\u2014this query targets halide, pnictide, other, and chalcogenide to resolve di"
+  },
+  {
+   "id": "N26",
+   "author": "agent4",
+   "round": 6,
+   "type": "claim",
+   "text": "Given the persistent experimental noise and conflicting computed band gap orders across databases (e.g., JARVIS-DFT TB-mBJ: halide > oxide > nitride > chalcogenide > pnictide > other vs. r2SCAN: oxide > halide > nitride), and the recurring inconsistency in measured rankings for halide, pnictide, oth"
+  },
+  {
+   "id": "N27",
+   "author": "agent5",
+   "round": 6,
+   "type": "claim",
+   "text": "Given the persistent experimental noise and conflicting computed band gap orders across databases (e.g., halide > oxide vs. oxide > halide), and the recurring inconsistency in measured rankings for halide, pnictide, other, and chalcogenide, this query targets these four families to resolve discrepan"
+  },
+  {
+   "id": "N28",
+   "author": "agent1",
+   "round": 7,
+   "type": "claim",
+   "text": "Targeting halide, pnictide, other, and chalcogenide to resolve persistent discrepancies in measured band gaps across queries. Despite multiple agents noting experimental noise and conflicting computed trends (e.g., halide > oxide vs. oxide > halide), these families consistently show inconsistent ran"
+  },
+  {
+   "id": "N29",
+   "author": "agent2",
+   "round": 7,
+   "type": "claim",
+   "text": "Targeting halide, pnictide, other, and chalcogenide to resolve persistent discrepancies in measured optical band gaps across queries, given conflicting computed trends from different databases (e.g., r2SCAN: oxide > halide vs. JARVIS-DFT: halide > oxide) and recurring experimental noise. These famil"
+  },
+  {
+   "id": "N30",
+   "author": "agent3",
+   "round": 7,
+   "type": "summary",
+   "text": "Based on private knowledge from JARVIS-DFT OptB88vdW (halide > oxide > boride > nitride > chalcogenide > other > pnictide) and persistent experimental noise in measured gaps\u2014especially for halide, pnictide, other, and chalcogenide\u2014this query targets these four families to resolve discrepancies in me"
+  },
+  {
+   "id": "N31",
+   "author": "agent4",
+   "round": 7,
+   "type": "claim",
+   "text": "Targeting halide, pnictide, other, and chalcogenide to resolve persistent discrepancies in measured optical band gaps. These families show high experimental noise and conflicting rankings across queries, despite private knowledge from JARVIS-DFT TB-mBJ (boride > oxide > halide > nitride > chalcogeni"
+  },
+  {
+   "id": "N32",
+   "author": "agent5",
+   "round": 7,
+   "type": "claim",
+   "text": "Targeting halide, pnictide, other, and chalcogenide to resolve persistent discrepancies in measured optical band gaps across queries. These families show high experimental noise and conflicting computed trends (e.g., halide > oxide vs. oxide > halide), suggesting that measured values may not reflect"
+  },
+  {
+   "id": "N33",
+   "author": "agent1",
+   "round": 8,
+   "type": "summary",
+   "text": "Multiple queries show persistent inconsistency in measured band gaps for halide, pnictide, other, and chalcogenide, with recurring rankings that vary across agents. Despite private knowledge indicating computed trends (e.g., halide > oxide > boride > nitride > chalcogenide > other > pnictide or hali"
+  },
+  {
+   "id": "N34",
+   "author": "agent2",
+   "round": 8,
+   "type": "summary",
+   "text": "After reviewing query results and claims from agents, halide, pnictide, other, and chalcogenide consistently show experimental noise and conflicting rankings across queries. Despite private knowledge from multiple databases (e.g., r2SCAN, JARVIS-DFT) suggesting variations in computed gaps, the measu"
+  },
+  {
+   "id": "N35",
+   "author": "agent3",
+   "round": 8,
+   "type": "summary",
+   "text": "The query targets halide, pnictide, other, and chalcogenide due to persistent experimental noise and conflicting measured rankings across queries. Private knowledge from JARVIS-DFT OptB88vdW (halide > oxide > boride > nitride > chalcogenide > other > pnictide) suggests a clear computed trend, but me"
+  },
+  {
+   "id": "N36",
+   "author": "agent4",
+   "round": 8,
+   "type": "claim",
+   "text": "Given the persistent experimental noise and conflicting computed band gap orders across databases (e.g., JARVIS-DFT TB-mBJ: halide > oxide > nitride > chalcogenide > pnictide > other vs. other databases showing oxide > halide), and the recurring inconsistency in measured rankings for halide, pnictid"
+  },
+  {
+   "id": "N37",
+   "author": "agent5",
+   "round": 8,
+   "type": "summary",
+   "text": "Multiple queries show persistent inconsistency in measured band gaps for halide, pnictide, other, and chalcogenide across agents, with conflicting rankings and high experimental noise. Despite private knowledge from various DFT databases (e.g., JARVIS-DFT OptB88vdW and TB-mBJ), the measured order re"
+  },
+  {
+   "id": "N38",
+   "author": "agent1",
+   "round": 9,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting computed band gap trends across databases (e.g., halide > oxide vs. oxide > halide), halide, pnictide, other, and chalcogenide consistently show inconsistent measured rankings across queries. Private knowledge suggests computed trends (e.g., hali"
+  },
+  {
+   "id": "N39",
+   "author": "agent2",
+   "round": 9,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting computed band gap trends across databases (e.g., r2SCAN: oxide > halide vs. JARVIS-DFT: halide > oxide), the measured rankings for halide, pnictide, other, and chalcogenide remain highly inconsistent across queries. This query targets these four "
+  },
+  {
+   "id": "N40",
+   "author": "agent3",
+   "round": 9,
+   "type": "summary",
+   "text": "The query targets halide, pnictide, other, and chalcogenide due to persistent experimental noise and conflicting measured rankings across queries. Private knowledge from JARVIS-DFT OptB88vdW (halide > oxide > boride > nitride > chalcogenide > other > pnictide) suggests a clear computed trend, but me"
+  },
+  {
+   "id": "N41",
+   "author": "agent4",
+   "round": 9,
+   "type": "summary",
+   "text": "Halide, pnictide, other, and chalcogenide consistently show high experimental noise and conflicting measured band gap rankings across queries. Despite private knowledge from JARVIS-DFT TB-mBJ (boride > oxide > halide > nitride > chalcogenide > pnictide > other), the measured trends remain inconsiste"
+  },
+  {
+   "id": "N42",
+   "author": "agent5",
+   "round": 9,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting computed band gap trends across databases (e.g., halide > oxide vs. oxide > halide), the families halide, pnictide, other, and chalcogenide consistently show inconsistent measured rankings across queries. Private knowledge suggests computed trend"
+  },
+  {
+   "id": "N43",
+   "author": "agent1",
+   "round": 10,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting measured rankings across queries, halide, pnictide, other, and chalcogenide consistently show inconsistent band gap orders. Private knowledge from multiple databases (e.g., JARVIS-DFT OptB88vdW and TB-mBJ) suggests computed trends such as halide "
+  },
+  {
+   "id": "N44",
+   "author": "agent2",
+   "round": 10,
+   "type": "summary",
+   "text": "Halide, pnictide, other, and chalcogenide consistently show high experimental noise and conflicting measured rankings across queries. Despite private knowledge from multiple DFT databases (e.g., r2SCAN, JARVIS-DFT OptB88vdW, TB-mBJ) indicating computed trends such as halide > oxide > boride > nitrid"
+  },
+  {
+   "id": "N45",
+   "author": "agent3",
+   "round": 10,
+   "type": "claim",
+   "text": "Given private knowledge from JARVIS-DFT OptB88vdW (halide > oxide > boride > nitride > chalcogenide > other > pnictide), and persistent experimental noise in measured optical band gaps\u2014especially for halide, pnictide, other, and chalcogenide\u2014this query targets these four families to resolve the recu"
+  },
+  {
+   "id": "N46",
+   "author": "agent4",
+   "round": 10,
+   "type": "claim",
+   "text": "Given the persistent experimental noise and conflicting computed band gap orders across databases (e.g., JARVIS-DFT TB-mBJ: halide > oxide > nitride > chalcogenide > pnictide > other vs. other databases suggesting oxide > halide), and the recurring inconsistency in measured rankings for halide, pnic"
+  },
+  {
+   "id": "N47",
+   "author": "agent5",
+   "round": 10,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting measured rankings across queries, halide, pnictide, other, and chalcogenide consistently show inconsistent orderings. Private knowledge from JARVIS-DFT OptB88vdW (halide > oxide > boride > nitride > chalcogenide > other > pnictide) suggests a cle"
+  },
+  {
+   "id": "N48",
+   "author": "agent1",
+   "round": 11,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting measured rankings across queries, halide, pnictide, other, and chalcogenide consistently show inconsistent band gap orders. Private knowledge from multiple DFT databases (e.g., JARVIS-DFT OptB88vdW and TB-mBJ) suggests computed trends such as hal"
+  },
+  {
+   "id": "N49",
+   "author": "agent2",
+   "round": 11,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting measured rankings across queries, halide, pnictide, other, and chalcogenide consistently show inconsistent band gap orders. Private knowledge from JARVIS-DFT OptB88vdW (halide > oxide > boride > nitride > chalcogenide > other > pnictide) suggests"
+  },
+  {
+   "id": "N50",
+   "author": "agent3",
+   "round": 11,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting measured rankings across queries, halide, pnictide, other, and chalcogenide consistently show inconsistent band gap orders. Private knowledge from JARVIS-DFT OptB88vdW (halide > oxide > boride > nitride > chalcogenide > other > pnictide) suggests"
+  },
+  {
+   "id": "N51",
+   "author": "agent4",
+   "round": 11,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting measured rankings across queries, halide, pnictide, other, and chalcogenide consistently show inconsistent band gap orders. Private knowledge from JARVIS-DFT TB-mBJ (boride > oxide > halide > nitride > chalcogenide > pnictide > other) suggests a "
+  },
+  {
+   "id": "N52",
+   "author": "agent5",
+   "round": 11,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting measured rankings across queries, halide, pnictide, other, and chalcogenide consistently show inconsistent band gap orders. Private knowledge from JARVIS-DFT OptB88vdW (halide > oxide > boride > nitride > chalcogenide > other > pnictide) suggests"
+  },
+  {
+   "id": "N53",
+   "author": "agent1",
+   "round": 12,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting measured rankings across queries, halide, chalcogenide, pnictide, and other consistently show inconsistent band gap orders. Private knowledge from JARVIS-DFT OptB88vdW (halide > oxide > boride > nitride > chalcogenide > other > pnictide) suggests"
+  },
+  {
+   "id": "N54",
+   "author": "agent2",
+   "round": 12,
+   "type": "claim",
+   "text": "Despite persistent experimental noise in halide, pnictide, other, and chalcogenide, the measured data for oxide, boride, nitride, and chalcogenide show a more stable trend. Private knowledge from r2SCAN (oxide > boride > halide > nitride > chalcogenide > other > pnictide) suggests a clear computed t"
+  },
+  {
+   "id": "N55",
+   "author": "agent3",
+   "round": 12,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting measured rankings across queries, halide, pnictide, other, and chalcogenide consistently show inconsistent band gap orders. Private knowledge from JARVIS-DFT OptB88vdW (halide > oxide > boride > nitride > chalcogenide > other > pnictide) suggests"
+  },
+  {
+   "id": "N56",
+   "author": "agent4",
+   "round": 12,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting measured rankings across queries, halide, chalcogenide, pnictide, and other consistently show inconsistent band gap orders. Private knowledge from JARVIS-DFT TB-mBJ (boride > oxide > halide > nitride > chalcogenide > pnictide > other) suggests a "
+  },
+  {
+   "id": "N57",
+   "author": "agent5",
+   "round": 12,
+   "type": "summary",
+   "text": "Despite persistent experimental noise and conflicting measured rankings across queries, halide, pnictide, other, and chalcogenide consistently show inconsistent band gap orders. Private knowledge from JARVIS-DFT OptB88vdW (halide > oxide > boride > nitride > chalcogenide > other > pnictide) suggests"
+  }
+ ],
+ "messages": [],
+ "llm_calls": 60,
+ "fallbacks": 0,
+ "coordinator_retries": 0,
+ "attribution": {
+  "v": {
+   "-": 0.0,
+   "agent1": 0.5238095238095238,
+   "agent2": 0.7142857142857143,
+   "agent3": 0.6,
+   "agent4": 0.7142857142857143,
+   "agent5": 0.8666666666666667,
+   "agent1,agent2": 0.8095238095238095,
+   "agent1,agent3": 0.6190476190476191,
+   "agent1,agent4": 0.5238095238095238,
+   "agent1,agent5": 0.8095238095238095,
+   "agent2,agent3": 0.8095238095238095,
+   "agent2,agent4": 0.7142857142857143,
+   "agent2,agent5": 0.9047619047619048,
+   "agent3,agent4": 0.7142857142857143,
+   "agent3,agent5": 0.6,
+   "agent4,agent5": 1.0,
+   "agent1,agent2,agent3": 0.8095238095238095,
+   "agent1,agent2,agent4": 0.8095238095238095,
+   "agent1,agent2,agent5": 0.8095238095238095,
+   "agent1,agent3,agent4": 0.7142857142857143,
+   "agent1,agent3,agent5": 0.8095238095238095,
+   "agent1,agent4,agent5": 1.0,
+   "agent2,agent3,agent4": 0.7142857142857143,
+   "agent2,agent3,agent5": 0.9047619047619048,
+   "agent2,agent4,agent5": 0.9047619047619048,
+   "agent3,agent4,agent5": 0.9047619047619048,
+   "agent1,agent2,agent3,agent4": 0.8095238095238095,
+   "agent1,agent2,agent3,agent5": 0.8095238095238095,
+   "agent1,agent2,agent4,agent5": 0.9047619047619048,
+   "agent1,agent3,agent4,agent5": 0.9047619047619048,
+   "agent2,agent3,agent4,agent5": 0.8095238095238095,
+   "agent1,agent2,agent3,agent4,agent5": 0.9047619047619048
+  },
+  "hyperedges": [
+   [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent4"
+   ],
+   [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent4",
+    "agent5"
+   ],
+   [
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent5"
+   ],
+   [
+    "agent1",
+    "agent3",
+    "agent5"
+   ],
+   [
+    "agent1",
+    "agent2",
+    "agent3"
+   ]
+  ],
+  "conference_counts": {
+   "agent1,agent2,agent3,agent4": 6,
+   "agent1,agent2,agent3,agent4,agent5": 38,
+   "agent1,agent3,agent4,agent5": 1,
+   "agent1,agent2,agent3,agent5": 5,
+   "agent1,agent3,agent5": 3,
+   "agent1,agent2,agent3": 2
+  },
+  "shapley": {
+   "agent1": 0.12412698412698413,
+   "agent2": 0.18761904761904763,
+   "agent3": 0.10984126984126984,
+   "agent4": 0.1955555555555556,
+   "agent5": 0.2876190476190476
+  },
+  "myerson_clique": {
+   "agent1": 0.12412698412698413,
+   "agent2": 0.18761904761904763,
+   "agent3": 0.10984126984126984,
+   "agent4": 0.1955555555555556,
+   "agent5": 0.2876190476190476
+  },
+  "hypergraph_myerson": {
+   "agent1": -0.29365079365079366,
+   "agent2": 0.2904761904761905,
+   "agent3": -0.2174603174603176,
+   "agent4": 0.5547619047619048,
+   "agent5": 0.5706349206349207
+  },
+  "declared_myerson": {
+   "agent1": 0.2714285714285714,
+   "agent2": 0.2507936507936508,
+   "agent3": 0.34761904761904766,
+   "agent4": 0.2507936507936508,
+   "agent5": 0.4031746031746033
+  },
+  "declared": [
+   [
+    "agent1",
+    "agent3"
+   ],
+   [
+    "agent2",
+    "agent4",
+    "agent5"
+   ]
+  ]
+ },
+ "roles": {
+  "agent1": {
+   "queries": 12,
+   "notes": {
+    "observation": 0,
+    "fact": 1,
+    "failure": 0,
+    "claim": 6,
+    "summary": 5
+   },
+   "msgs_sent": 0,
+   "msgs_received": 0,
+   "cited_by_others": 44
+  },
+  "agent2": {
+   "queries": 12,
+   "notes": {
+    "observation": 0,
+    "fact": 1,
+    "failure": 0,
+    "claim": 6,
+    "summary": 5
+   },
+   "msgs_sent": 0,
+   "msgs_received": 0,
+   "cited_by_others": 40
+  },
+  "agent3": {
+   "queries": 12,
+   "notes": {
+    "observation": 0,
+    "fact": 0,
+    "failure": 0,
+    "claim": 6,
+    "summary": 5
+   },
+   "msgs_sent": 0,
+   "msgs_received": 0,
+   "cited_by_others": 44
+  },
+  "agent4": {
+   "queries": 12,
+   "notes": {
+    "observation": 0,
+    "fact": 0,
+    "failure": 0,
+    "claim": 8,
+    "summary": 3
+   },
+   "msgs_sent": 0,
+   "msgs_received": 0,
+   "cited_by_others": 34
+  },
+  "agent5": {
+   "queries": 12,
+   "notes": {
+    "observation": 0,
+    "fact": 0,
+    "failure": 0,
+    "claim": 6,
+    "summary": 5
+   },
+   "msgs_sent": 0,
+   "msgs_received": 0,
+   "cited_by_others": 36
+  }
+ }
+}
