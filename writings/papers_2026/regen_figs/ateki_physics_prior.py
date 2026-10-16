@@ -34,9 +34,9 @@ ART = ROOT / "ateki/results/physics_attribution/06_physics_prior_attribution.jso
 OUT = ROOT / "writings/papers_2026/ateki_tmlr/figures/06_physics_prior_attribution.png"
 
 PLAYERS = [
-    ("physics_prior", "physics prior (donor ordering)", SNUMAT_PURPLE, "o"),
-    ("kway_events", "$k$-way events", JARVIS_GREEN, "s"),
-    ("pair_events", "pairwise events", MP_BLUE, "^"),
+    ("physics_prior", "donor database ordering (e.g. MP GGA)", SNUMAT_PURPLE, "o"),
+    ("kway_events", "purchased four-sample trays", JARVIS_GREEN, "s"),
+    ("pair_events", "purchased pairwise comparisons", MP_BLUE, "^"),
 ]
 
 
@@ -63,7 +63,7 @@ def main():
              markersize=4, color=SNUMAT_PURPLE)
     ax2.set_xlabel("evaluation budget")
     ax2.set_ylabel("prior share of grand-coalition value (%)")
-    ax2.set_title("Physics prior's share of the outcome")
+    ax2.set_title("Donor ordering's share of the outcome")
     ax2.set_xticks(budgets)
     ax2.set_ylim(30, 66)
     for i in (0, len(budgets) - 1):

@@ -41,10 +41,10 @@ ART = ROOT / "ateki/results/campaign_attribution/k4_50seed/07_campaign_attributi
 OUT = ROOT / "writings/papers_2026/ateki_tmlr/figures/07_campaign_attribution.png"
 
 FACTORS = [
-    ("cold_data", "cold\ndata", MP_BLUE),
-    ("donor_prior", "donor\nprior", SNUMAT_PURPLE),
-    ("adaptive_trust", "adaptive\ntrust", EXPT_GOLD),
-    ("kway_events", "$k$-way\nevents", JARVIS_GREEN),
+    ("cold_data", "own\nmeasure-\nments", MP_BLUE),
+    ("donor_prior", "donor\nordering", SNUMAT_PURPLE),
+    ("adaptive_trust", "learned\ntrust", EXPT_GOLD),
+    ("kway_events", "four-\nsample\ntrays", JARVIS_GREEN),
 ]
 
 # Compact donor->receiver names for the five negative-prior cells
@@ -81,9 +81,9 @@ def main():
             if abs(v) >= 0.05:
                 ax1.annotate(f"{v:+.2f}", xy=(x, v), xytext=(0, 2),
                              textcoords="offset points", ha="center",
-                             va="bottom", fontsize=6, color=INK)
+                             va="bottom", fontsize=7, color=INK)
     ax1.set_xticks(xs)
-    ax1.set_xticklabels([lab for _, lab, _ in FACTORS], fontsize=6)
+    ax1.set_xticklabels([lab for _, lab, _ in FACTORS], fontsize=7)
     ax1.axhline(0, color=INK, linewidth=0.8)
     ax1.set_ylabel("mean Shapley value (Kendall $\\tau$)")
     ax1.set_title("(a) per-factor credit,\n56 cells", loc="left")

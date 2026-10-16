@@ -4,19 +4,23 @@
 Panels: two, all values from the committed coalition cache
 (ateki/results/database_attribution/coalitions/expt_zhuo/, one JSON per
 coalition; value_early = measured early-window mean tau of a paired
-campaign whose pooled prior uses exactly that donor subset) and the
-committed exact Shapley values
+campaign whose pooled prior uses exactly that donor subset, with the ten
+per-seed values in per_seed_early) and the committed exact Shapley values
+with their seed intervals
 (ateki/results/database_attribution/expt_zhuo/database_attribution.json).
 (a) The coalition landscape: all 128 measured campaign values sorted,
-    coloured by whether the donor subset contains a SNUMAT source;
-    the cold campaign v(empty), the full seven-donor pool, and the best
-    coalition are marked.
-(b) One player's credit, step by step: the measured jump
-    v(S + player) - v(S) over all 64 subsets S for SNUMAT HSE06 and for
-    MP GGA, with the committed exact Shapley credit annotated (the
-    size-weighted average of exactly these jumps).
+    coloured by whether the donor subset contains a SNUMAT source, each
+    with its 95% percentile-bootstrap interval of the seed mean (2000
+    resamples of the ten matched seeds, fixed generator seed); the
+    campaign without donor advice, the full seven-donor pool, and the
+    best subset (named) are marked.
+(b) Exact Shapley credit of each of the seven donors (the size-weighted
+    average of its 64 measured marginal jumps), with the 95% interval
+    over the ten matched seeds (shapley_seed_cis), coloured by database
+    family.
 
 Size and fonts: TMLR full width (6.5 in), fonts per paper_fig_style.
+ASCII only.
 """
 
 import json
@@ -25,7 +29,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from paper_fig_style import (  # noqa: E402
-    TMLR_FULL, MP_BLUE, SNUMAT_PURPLE, EXPT_GOLD, ACCENT_RED, GREY, INK,
+    TMLR_FULL, SOURCE_COLOURS, SNUMAT_PURPLE, ACCENT_RED, GREY, INK,
     apply_style, save,
 )
 import matplotlib.pyplot as plt  # noqa: E402
@@ -36,73 +40,85 @@ COAL = ROOT / "ateki/results/database_attribution/coalitions/expt_zhuo"
 DBA = ROOT / "ateki/results/database_attribution/expt_zhuo/database_attribution.json"
 OUT = ROOT / "writings/papers_2026/ateki_tmlr/figures/worked_example_ateki.png"
 
+NAME = {"mp_gga": "MP GGA", "mp_gga_expsynth": "MP GGA (ICSD subset)",
+        "mp_r2scan": "MP r$^2$SCAN", "jarvis_optb88vdw": "JARVIS OptB88vdW",
+        "jarvis_mbj": "JARVIS TB-mBJ", "snumat_gga": "SNUMAT GGA",
+        "snumat_hse": "SNUMAT HSE06"}
+
 
 def main():
     apply_style()
-    coals = {}
+    coals, seeds = {}, {}
     for f in COAL.glob("*.json"):
-        d = json.load(open(f))
-        coals[frozenset(d["members"])] = float(d["value_early"])
+        d = json.load(open(f, encoding="utf-8"))
+        k = frozenset(d["members"])
+        coals[k] = float(d["value_early"])
+        seeds[k] = np.array([float(v) for v in d["per_seed_early"].values()])
     assert len(coals) == 128, len(coals)
-    dba = json.load(open(DBA))
+    dba = json.load(open(DBA, encoding="utf-8"))
     shap = dba["exact"]["shapley"]
+    cis = dba["shapley_seed_cis"]
 
-    fig, axes = plt.subplots(1, 2, figsize=(TMLR_FULL, 2.7),
-                             gridspec_kw={"width_ratios": [1.25, 1.0]})
+    fig, axes = plt.subplots(1, 2, figsize=(TMLR_FULL, 2.85),
+                             gridspec_kw={"width_ratios": [1.3, 1.0]})
 
-    # (a) the coalition landscape
+    # (a) the coalition landscape with seed intervals
     ax = axes[0]
+    rng = np.random.default_rng(0)
     items = sorted(coals.items(), key=lambda kv: kv[1])
     xs = np.arange(len(items))
+    lo, hi = [], []
+    for k, _ in items:
+        a = seeds[k]
+        b = a[rng.integers(0, len(a), (2000, len(a)))].mean(1)
+        lo.append(np.percentile(b, 2.5))
+        hi.append(np.percentile(b, 97.5))
     snumat = [any(m.startswith("snumat") for m in k) for k, _ in items]
-    ax.scatter(xs, [v for _, v in items], s=9,
-               c=[SNUMAT_PURPLE if s else GREY for s in snumat], zorder=2)
+    cols = [SNUMAT_PURPLE if s else GREY for s in snumat]
+    ax.vlines(xs, lo, hi, colors=cols, lw=0.6, alpha=0.30, zorder=1)
+    ax.scatter(xs, [v for _, v in items], s=8, c=cols, zorder=2)
     full = frozenset(shap.keys())
     empty_v = coals[frozenset()]
     full_v = coals[full]
     best_k, best_v = max(coals.items(), key=lambda kv: kv[1])
-    marks = ((empty_v, f"cold campaign  {empty_v:+.3f}", (6, -0.002), "left"),
-             (full_v, f"all 7 donors  {full_v:+.3f}", (6, -0.010), "left"),
-             (best_v, f"best subset  {best_v:+.3f}",
-              (-6, 0.0), "right"))
-    for v, lbl, (dx, dy), ha in marks:
-        x = next(i for i, (_, vv) in enumerate(items) if vv == v)
-        ax.scatter([x], [v], s=34, facecolor="white", edgecolor=ACCENT_RED,
-                   lw=1.2, zorder=3)
-        ax.annotate(lbl, xy=(x + dx, v + dy), fontsize=6.8, color=ACCENT_RED,
-                    ha=ha, va="center")
-    ax.scatter([], [], s=9, c=SNUMAT_PURPLE, label="subset contains a SNUMAT donor")
-    ax.scatter([], [], s=9, c=GREY, label="no SNUMAT donor")
-    ax.legend(loc="lower right", fontsize=6.5)
+    best_name = " + ".join(NAME[m] for m in sorted(best_k, key=lambda m: -shap[m]))
+    marks = ((frozenset(), f"no donor advice  {empty_v:.3f}", (6, -0.08), "left"),
+             (full, f"all seven donors  {full_v:.3f}", (6, -0.10), "left"),
+             (best_k, f"best subset  {best_v:.3f}:\n{best_name}", (-6, 0.08), "right"))
+    for k, lbl, (dx, dy), ha in marks:
+        x = next(i for i, (kk, _) in enumerate(items) if kk == k)
+        v = coals[k]
+        ax.scatter([x], [v], s=30, facecolor="white", edgecolor=ACCENT_RED,
+                   lw=1.1, zorder=3)
+        ax.annotate(lbl, xy=(x, v), xytext=(x + dx, v + dy), fontsize=7,
+                    color=ACCENT_RED, ha=ha, va="center",
+                    arrowprops=dict(arrowstyle="-", color=ACCENT_RED, lw=0.6))
+    ax.scatter([], [], s=8, c=SNUMAT_PURPLE, label="subset holds a SNUMAT database")
+    ax.scatter([], [], s=8, c=GREY, label="no SNUMAT database")
+    ax.legend(loc="lower right", fontsize=7, handletextpad=0.2)
+    ax.set_ylim(0.40, 1.0)
     ax.set_xlabel("the 128 donor subsets, sorted by campaign outcome")
-    ax.set_ylabel("measured early-window\ncampaign quality (Kendall $\\tau$)")
-    ax.set_title("(a) every donor subset was actually run", fontsize=8)
+    ax.set_ylabel("early-window campaign\nquality (Kendall $\\tau$)")
+    ax.set_title("(a) Every donor subset run (10 seeds each)", loc="left", fontsize=8)
 
-    # (b) one player's credit
+    # (b) exact Shapley credit of the seven donors with seed intervals
     ax = axes[1]
-    players = [("snumat_hse", "SNUMAT HSE06", SNUMAT_PURPLE),
-               ("mp_gga", "MP GGA", MP_BLUE)]
-    rng = np.random.default_rng(0)
-    for i, (pid, name, col) in enumerate(players):
-        margs = []
-        for k, v in coals.items():
-            if pid not in k:
-                margs.append(coals[k | {pid}] - v)
-        margs = np.array(margs)
-        jitter = rng.uniform(-0.13, 0.13, len(margs))
-        ax.scatter(np.full(len(margs), i) + jitter, margs, s=8, color=col,
-                   alpha=0.55, zorder=2)
-        phi = shap[pid]
-        ax.hlines(phi, i - 0.24, i + 0.24, color=ACCENT_RED, lw=1.6, zorder=3)
-        ax.annotate(f"Shapley {phi:+.3f}", xy=(i + 0.27, phi),
-                    fontsize=6.8, color=ACCENT_RED, va="center")
-    ax.axhline(0, color=INK, lw=0.7)
-    ax.set_xticks([0, 1])
-    ax.set_xticklabels([p[1] for p in players])
-    ax.set_xlim(-0.5, 2.05)
-    ax.set_ylabel("measured jump when the donor\njoins a subset (Kendall $\\tau$)")
-    ax.set_title("(b) credit = size-weighted average\nof 64 measured jumps",
-                 fontsize=8)
+    order = sorted(shap, key=shap.get, reverse=True)
+    y = np.arange(len(order))
+    vals = np.array([shap[k] for k in order])
+    elo = vals - np.array([cis[k]["ci"][0] for k in order])
+    ehi = np.array([cis[k]["ci"][1] for k in order]) - vals
+    ax.barh(y, vals, color=[SOURCE_COLOURS[k] for k in order], height=0.62)
+    ax.errorbar(vals, y, xerr=[elo, ehi], fmt="none", ecolor=INK, elinewidth=0.8,
+                capsize=2)
+    ax.axvline(0, color=INK, lw=0.7)
+    ax.set_xticks([-0.04, -0.02, 0, 0.02, 0.04, 0.06])
+    ax.set_yticks(y)
+    ax.set_yticklabels([NAME[k] for k in order], fontsize=7)
+    ax.invert_yaxis()
+    ax.grid(axis="y", visible=False)
+    ax.set_xlabel("Shapley credit (Kendall $\\tau$ gain)")
+    ax.set_title("(b) Credit of each database", loc="left", fontsize=8)
     save(fig, OUT)
 
 
