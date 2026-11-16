@@ -1,8 +1,6 @@
 # ATEKi
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23413476.svg)](https://doi.org/10.5281/zenodo.23413476)
-
-**Paper.** Fairly Dividing a Discovery Campaign's Outcome Among Its Members, Meetings, and Borrowed Knowledge (submitted to Transactions on Machine Learning Research).
+**Paper.** Organizational Learning in Materials Discovery Campaigns: Utilizing Databases, Calculations, and Group Members to Advance Discovery (submitted to Materials Genome Engineering Advances (Wiley); preprint on arXiv, cs.LG).
 
 This repository holds the code and data behind the paper: the scripts that draw its figures, the result files they read, the code that produced those results, and the archived or computed inputs that code reads. The manuscript itself is not part of the repository. Every script runs unchanged from the repository root.
 
@@ -23,29 +21,27 @@ Figures: run a script from the folder root, for example `python writings/papers_
 
 | Figure | Script | Files read |
 |---|---|---|
-| `06_physics_prior_attribution.png` | `writings/papers_2026/regen_figs/ateki_physics_prior.py` | `ateki/results/physics_attribution/06_physics_prior_attribution.json`, `ateki/results/physics_attribution/06_physics_prior_attribution_per_run.json` |
-| `07_campaign_attribution.png` | `writings/papers_2026/regen_figs/ateki_campaign_attribution.py` | `ateki/results/campaign_attribution/k4_50seed/07_campaign_attribution.json` |
 | `worked_example_ateki.png` | `writings/papers_2026/regen_figs/worked_example_ateki.py` | `ateki/results/database_attribution/coalitions/expt_zhuo/0.json`, `ateki/results/database_attribution/coalitions/expt_zhuo/1.json`, `ateki/results/database_attribution/coalitions/expt_zhuo/10.json`, `ateki/results/database_attribution/coalitions/expt_zhuo/100.json` and 125 more |
-| `database_attribution.png` | `writings/papers_2026/regen_figs/ateki_database_attribution.py` | `ateki/results/database_attribution/expt_zhuo/database_attribution.json` |
-| `recorded_meetings.pdf` | `writings/papers_2026/regen_figs/ateki_recorded_meetings.py` | `ateki/results/recorded_meetings/campaigns/flat_s0.json`, `ateki/results/recorded_meetings/campaigns/flat_s1.json`, `ateki/results/recorded_meetings/campaigns/flat_s2.json`, `ateki/results/recorded_meetings/campaigns/flat_s3.json` and 8 more |
-| `live_attribution.png` | `writings/papers_2026/regen_figs/live_almgsi_figs.py` | `compute/almgsi_campaign/candidates_index.json`, `compute/almgsi_campaign/results/analysis/source_agreement.json`, `compute/almgsi_campaign/results/campaigns/qe_hse06_all/summary.json`, `compute/almgsi_campaign/results/campaigns/qe_pbe_all/summary.json` and 11 more |
 | `harsanyi_dividends.png` | `writings/papers_2026/regen_figs/ateki_harsanyi_dividends.py` | `ateki/results/harsanyi_dividends/expt_zhuo/harsanyi_dividends.json` |
+| `redundancy.pdf` | `writings/papers_2026/regen_figs/mgea_redundancy.py` | `ateki/results/data_valuation_estimators/data_valuation_estimators.json`, `ateki/results/database_attribution/expt_zhuo/database_attribution.json` |
 | `compute_credit.png` | `writings/papers_2026/regen_figs/ateki_compute_credit.py` | `compute/almgsi_campaign/results/campaigns/qe_hse06_shapley_coalitions/coalitions.json`, `compute/almgsi_campaign/results/campaigns/qe_hse06_shapley_combined/coalitions.json`, `compute/almgsi_campaign/results/campaigns/qe_pbe_shapley_coalitions/coalitions.json`, `compute/semiconductor_campaign/results/campaigns/qe_hse06_nohalide/coalitions.json` and 3 more |
+| `meetings.pdf` | `writings/papers_2026/regen_figs/mgea_meetings.py` | `ateki/results/component_rule/component_rule.json`, `ateki/results/materials_structure_attribution/materials_structure_attribution.json` |
+| `teams.pdf` | `writings/papers_2026/regen_figs/mgea_teams.py` | `ateki/results/recorded_meetings_coordinator/summary_coordinator.json`, `ateki/results/recorded_meetings_scale/scale_summary.json` |
 | `emergent_swarm.pdf` | `writings/papers_2026/regen_figs/ateki_emergent_swarm.py` | `ateki/results/emergent_swarm/shapley.json`, `ateki/results/emergent_swarm/team_values.json` |
 | `emergent_swarm_dynamics.pdf` | `writings/papers_2026/regen_figs/ateki_emergent_swarm.py` | `ateki/results/emergent_swarm/shapley.json`, `ateki/results/emergent_swarm/team_values.json` |
-| `shared_member_credit.pdf` | `writings/papers_2026/regen_figs/ateki_unequal_credit.py` | `ateki/results/unequal_credit/part_a.json`, `ateki/results/unequal_credit/part_b.json` |
 | `replicated_bodies.pdf` | `writings/papers_2026/regen_figs/ateki_replicated_bodies.py` | `ateki/results/replicated_bodies/replicated_bodies.json` |
 | `multiple_swarms.pdf` | `writings/papers_2026/regen_figs/ateki_multiple_swarms.py` | `ateki/results/multiple_swarms/games.json`, `ateki/results/multiple_swarms/team_values.json` |
 | `morphing_swarms.pdf` | `writings/papers_2026/regen_figs/ateki_morphing_swarms.py` | `ateki/results/morphing_swarms/games.json`, `ateki/results/morphing_swarms/team_values.json` |
 | `mobile_members.pdf` | `writings/papers_2026/regen_figs/ateki_mobile_members.py` | `ateki/results/mobile_members/games.json`, `ateki/results/mobile_members/team_values.json`, `ateki/results/morphing_swarms/team_values.json` |
+| `shared_member_credit.pdf` | `writings/papers_2026/regen_figs/ateki_unequal_credit.py` | `ateki/results/unequal_credit/part_a.json`, `ateki/results/unequal_credit/part_b.json` |
 | `unequal_credit.pdf` | `writings/papers_2026/regen_figs/ateki_unequal_credit.py` | `ateki/results/unequal_credit/part_a.json`, `ateki/results/unequal_credit/part_b.json` |
+| `live_attribution.png` | `writings/papers_2026/regen_figs/live_almgsi_figs.py` | `compute/almgsi_campaign/candidates_index.json`, `compute/almgsi_campaign/results/analysis/source_agreement.json`, `compute/almgsi_campaign/results/campaigns/qe_hse06_all/summary.json`, `compute/almgsi_campaign/results/campaigns/qe_pbe_all/summary.json` and 11 more |
+| `toc_graphic.png` | `writings/papers_2026/regen_figs/mgea_toc_graphic.py` | `ateki/results/database_attribution/expt_zhuo/database_attribution.json` |
 
 ## Producing code
 
 The result files above were written by these scripts (local modules they import are included as well):
 
-- `ateki/experiments/06_physics_prior_attribution.py`
-- `ateki/experiments/07_campaign_attribution.py`
 - `ateki/experiments/08_database_attribution.py`
 - `ateki/experiments/09_harsanyi_dividends.py`
 - `ateki/experiments/10_materials_structure_attribution.py`
@@ -55,8 +51,6 @@ The result files above were written by these scripts (local modules they import 
 - `ateki/experiments/13_recorded_meetings_coordinator.py`
 - `ateki/results/recorded_meetings_scale/analyze_scale.py`
 - `ateki/results/recorded_meetings_coordinator/analyze_coordinator.py`
-- `campaign_protocols/code/experiments/26_paired_campaign.py`
-- `campaign_protocols/code/experiments/25_physics_informed_budget.py`
 - `compute/bandgap_archive/build_inventory.py`
 - `compute/almgsi_campaign/generate_candidates.py`
 - `compute/almgsi_campaign/add_observed_phases.py`
@@ -80,7 +74,6 @@ The result files above were written by these scripts (local modules they import 
 - `ateki/experiments/18_mobile_members.py`
 - `ateki/experiments/19_unequal_credit.py`
 - `ateki/experiments/20_data_valuation_estimators.py`
-- `campaign_protocols/code/experiments/24_hyperedge_budget.py`
 - `compute/almgsi_campaign/rerun_md_noise.py`
 - `compute/almgsi_campaign/temperature_coalitions.py`
 - `compute/almgsi_campaign/shard_cids.py`
@@ -90,7 +83,6 @@ The result files above were written by these scripts (local modules they import 
 Some results in the paper come from campaign protocols and analyses that also serve other projects of the group. The scripts and the result files they need are copied here, so this repository depends on no other repository. Their files are marked `(carried over)` in `CONTENTS.tsv`. Folders:
 
 - `campaign_protocols/code/`
-- `campaign_protocols/results/`
 
 ## Notes on inputs
 
@@ -99,13 +91,12 @@ Some results in the paper come from campaign protocols and analyses that also se
 
 ## Contents by role
 
-- code: 135 files
+- code: 132 files
 - environment: 6 files
-- figure data: 5432 files
-- input data: 2199 files
-- result named in paper: 24 files
+- figure data: 5663 files
+- result named in paper: 14 files
+- input data: 1565 files
 - code (carried over): 4 files
-- input data (carried over): 6 files
 
 `FILES.sha256` lists every file with its SHA-256 checksum; `CONTENTS.tsv` gives the role of each file.
 
