@@ -92,7 +92,7 @@ from analysis.shapley import ShapleyEngine, BanzhafEngine
 
 _HERE = Path(__file__).resolve().parent
 _PKG_ROOT = _HERE.parents[1]  # singular_obj/ (_HERE is .../ateki/experiments)
-EXP26_PATH = (_PKG_ROOT / "tenki" / "TENKi" / "experiments"
+EXP26_PATH = (_PKG_ROOT / "campaign_protocols" / "code" / "experiments"
               / "26_paired_campaign.py")
 
 MC_PERMUTATIONS = [10, 30, 100, 300, 1000, 3000]

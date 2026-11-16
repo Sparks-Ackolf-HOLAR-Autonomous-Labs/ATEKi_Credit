@@ -101,9 +101,6 @@ their defaults are the settings of the paper, and `--self-test` (or
 
 ```bash
 cd ateki
-uv run python experiments/06_physics_prior_attribution.py
-uv run python experiments/07_campaign_attribution.py \
-  --checkpoints-dir ../shared/output/bandgap_cluster_run2/paired_campaign_k4/checkpoints --label k4_50seed   # likewise k6
 uv run python experiments/08_database_attribution.py --workers 14   # all 128 coalitions, about 35 s each
 uv run python experiments/09_harsanyi_dividends.py
 uv run python experiments/10_materials_structure_attribution.py      # and --window final
