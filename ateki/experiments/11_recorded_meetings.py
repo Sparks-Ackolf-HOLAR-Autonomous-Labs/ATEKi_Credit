@@ -74,7 +74,7 @@ from analysis.shapley import (  # noqa: E402
     ShapleyEngine,
 )
 
-_exp26_path = (_HERE.parent.parent / "tenki" / "TENKi" / "experiments"
+_exp26_path = (_HERE.parent.parent / "campaign_protocols" / "code" / "experiments"
                / "26_paired_campaign.py")
 _spec = importlib.util.spec_from_file_location("exp26", str(_exp26_path))
 exp26 = importlib.util.module_from_spec(_spec)

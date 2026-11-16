@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 HERE = Path(__file__).resolve().parent
 ATEKI = HERE.parent.parent
 spec = importlib.util.spec_from_file_location(
-    "exp26", str(ATEKI.parent / "tenki" / "TENKi" / "experiments"
+    "exp26", str(ATEKI.parent / "campaign_protocols" / "code" / "experiments"
                  / "26_paired_campaign.py"))
 exp26 = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(exp26)
