@@ -88,6 +88,15 @@ _HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.abspath(os.path.join(_HERE, "..")))
 
 import numpy as np
+
+try:
+    from . import _draw  # noqa: E402  (draw without replacement within a campaign)
+except ImportError:
+    import importlib.util as _ilu
+    import pathlib as _pl
+    _sp = _ilu.spec_from_file_location("_draw", _pl.Path(__file__).with_name("_draw.py"))
+    _draw = _ilu.module_from_spec(_sp)
+    _sp.loader.exec_module(_draw)
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -246,7 +255,7 @@ def combined_prior(receiver: str, per_channel: dict,
 
 
 def sample_event(classes: dict, subset: list, rng: np.random.Generator):
-    scores = {c: float(classes[c][rng.integers(0, len(classes[c]))])
+    scores = {c: float(_draw.draw(classes, c, rng))
               for c in subset}
     return hyperedge_from_scores(scores, higher_is_better=True)
 

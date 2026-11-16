@@ -19,7 +19,7 @@ sys.path.insert(0, str(ATEKI))
 from analysis.shapley import ShapleyEngine  # noqa: E402
 
 spec = importlib.util.spec_from_file_location(
-    "exp26", str(ATEKI.parent / "tenki" / "TENKi" / "experiments"
+    "exp26", str(ATEKI.parent / "campaign_protocols" / "code" / "experiments"
                  / "26_paired_campaign.py"))
 exp26 = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(exp26)
